@@ -1,0 +1,260 @@
+main {
+  z-index: 2;
+}
+//sticky menu
+.scrolled .blog-menu{
+  padding: 0px!important;
+  box-shadow: 0 1px 2px 0 rgba(34,34,34,.149);
+  top: 0;
+}
+.single-post, .blog{
+  .position-custom{
+    background-color: #74489d;
+    position: fixed!important;
+    left: 0!important;
+    right: 0!important;
+  }
+}
+
+  //progress bar
+.blog-progress {
+  visibility: hidden;
+  opacity: 0;
+  @extend .lazy;
+}
+.blog-progress.show{
+  visibility: visible;
+  opacity: 1;
+}
+.scrolled .blog-progress {
+  top: 71px;
+}
+progress {
+  height: 0.6rem;
+  background: #fbbb01;
+}
+progress {
+  color: lightblue;
+}
+
+progress::-moz-progress-bar {
+  background: lightblue;
+}
+
+progress::-webkit-progress-value {
+  background: #fbbb01;
+}
+
+progress::-webkit-progress-bar {
+  background: $success;
+}
+//mobile menu
+@media only screen and (max-width: 992px) {
+
+}
+.modal-dialog{
+  pointer-events: auto!important;
+}
+//hamburger
+.menu-toggle {
+  z-index: 1000;
+  transition: margin .5s ease;
+  cursor: pointer;
+  left: 10px;
+  top: 15px;
+  width: 42px;
+  height: 42px;
+
+  .lines-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lines {
+    width: 24px;
+    height: 2px;
+    -webkit-text-fill-color: #fff;
+
+    &:before,
+    &:after {
+      content: '';
+      height: 2px;
+      width: 24px;
+      position: absolute;
+      left: 0;
+      transform-origin: 1.5px center;
+      transition: transform .3s;
+      display: inline-block;
+      background-color: #fff;
+    }
+
+    &:before {
+      top: 8px;
+    }
+
+    &:after {
+      top: -8px;
+    }
+  }
+
+  &:not(.active) .lines-button:hover .lines:before {
+    transform: translateY(-2px);
+  }
+
+  &:not(.active) .lines-button:hover .lines:after {
+    transform: translateY(2px);
+  }
+}
+
+//toggle close
+.menu-toggle-close {
+  left: 10px;
+  top: 15px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+}
+
+.lines-button-close {
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+
+  .lines-close {
+    width: 24px;
+    height: 3px;
+    background: none;
+
+    &:before,
+    &:after {
+      transform-origin: 50% 50%;
+      top: 0;
+      content: '';
+      height: 3px;
+      width: 24px;
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      background-color: #fff;
+    }
+
+    &:before {
+      transform: rotate3d(0, 0, 1, 45deg);
+      transition: transform .2s ease;
+    }
+
+    &:after {
+      transform: rotate3d(0, 0, 1, -45deg);
+      transition: transform .2s ease;
+    }
+  }
+
+  &:hover .lines-close:before,
+  &:hover .lines-close:after {
+    -ms-transform: rotate3d(0, 0, 1, 0deg);
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+//menu hide and show
+.menu ul {
+  list-style: none;
+}
+
+
+.menu ul ul {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+
+}
+
+
+.back-button {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+#navbarTogglerMenu .sub-menu{
+  font-size: 18px!important;
+  margin-top: 20px !important;
+  li{
+    @extend .my-2;
+  }
+}
+
+//back to top buttom
+
+.backTo_Top {
+  width: 40px;
+  height: 40px;
+  left: 15px;
+  bottom: 15px;
+  z-index: 10;
+  &:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;  // Apply transition to background-color property
+    background-color: rgba(0, 0, 0, 0.5);   // Set initial background color
+
+  }
+  &:hover:before {
+    background-color: rgba(0, 0, 0, 1);   // Change background color on hover
+  }
+}
+//menu for single post
+#navbarMenu {
+  > li{
+    color: #fff;
+  }
+  .menu-item-has-children {
+    display: flex;
+    align-items: center;
+    &:after {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      line-height: 0;
+      padding-left: 4px;
+    }
+    .sub-menu {
+      text-align: left;
+      width: max-content;
+      opacity: 0;
+      visibility: hidden;
+      transition:  all 0.3s linear;
+      position: absolute;
+      top: 100%;
+      list-style: none;
+      z-index: -100;
+      display: grid;
+      gap: 8px;
+      background: #fff;
+      height: unset;
+      color: #000!important;
+      border: 1px solid $danger;
+      li{
+        padding: 0px 10px;
+        transition: all 0.3s linear;
+      }
+      li:hover{
+        color: #fff;
+        background-color: $danger;
+      }
+
+    }
+    &:hover {
+      .sub-menu{
+        opacity: 1;
+        z-index: 1;
+        height: auto;
+        visibility: visible;
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+//COLOR
+$body-color: #5E6972;
+$body-text: #5E6972;
+$light: rgba(255, 255, 255, 0.5);
+$dark: rgba(26, 25, 29, 0.95);
+
+
+$gunmetal: #2B303E;
+
+$primary: #1C1A1B;
+$secondary: #D1EDF6;
+$warning: #fbbb01;
+$success: #F1F5F9;
+$danger: #74489d;
+$info: #F2F2FF;
+$transparent: #ffffff;
+
+//border radius
+$border-radius: 10px;
+$border-radius-sm: 15px;
+$border-radius-lg: 30px;
+
+//base class variables
+$transition-base: all .4s;
+$transition-fast: all .2s ease-in-out;
+$transition: all .4s ease-in-out;
+$transition-slow: all .6s;
+
+//FONTS
+$font-weight-normal: 400;
+$font-weight-bold: 500;
+$font-weight-semibold: 700;
+$font-weight-bolder: 900;
+$font-weight-base: $font-weight-normal;
+
+$min-contrast-ratio: 2.5;
+$font-family-base: Yekan, 'sans-serif', 'Nunito';
+$font-size-base: 1.3rem * (14/16);
+$small-font-size: .875rem  * (14/16);
+$line-height-base: 1;
+$line-height-lg: 1.7;
+$enable-smooth-scroll: true;
+$enable-negative-margins: true;
+$stretched-link-z-index: 1;
+$input-focus-box-shadow: none;
+
+//link
+$link-decoration: none;
+$link-hover-decoration: none;
+$link-color: #fff;
+
+
+//tabs
+$nav-tabs-link-active-color: #ffffff;
+$nav-tabs-link-active-bg: rgba(255, 255, 255, .15);
+$nav-tabs-link-active-border-color: #ffffff;
+$nav-tabs-border-radius: 0px;
+$nav-pills-link-active-color: #ffffff;
+$nav-pills-link-active-bg:$danger;
+
+//modal
+$modal-backdrop-bg:rgba(0, 0, 0);
+$modal-backdrop-opacity:.8;
+$modal-fade-transform: scale(.8);
+
+//offcanvas
+$offcanvas-vertical-height: 100vh;
+//container
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1620px
+);
+$custom-container-width: 1300px;

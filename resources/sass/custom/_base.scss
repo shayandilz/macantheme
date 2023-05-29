@@ -1,0 +1,68 @@
+html, body {
+  padding: 0px!important;
+}
+
+// SCROLL bar styles
+::-webkit-scrollbar {
+  width: 6px;
+  height: 0;
+}
+::-webkit-scrollbar-track {
+  background: $secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $warning;
+  border-radius: 2rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+}
+//custom css
+a {
+  text-decoration: none !important;
+}
+mark{
+  background-color: rgba(116, 72, 157, 0.4) !important;
+}
+.object-fit {
+  object-fit: cover;
+}
+.text-justify {
+  text-align: justify;
+}
+.lazy {
+  transition: all 0.3s ease-in-out;
+}
+.z--1 {
+  z-index: -1;
+}
+.z-top {
+  z-index: 10;
+}
+.lh-0{
+  line-height: 0!important;
+}
+.text-shadow{
+  text-shadow: +3px 0px 6px #818181;
+}
+.min-vh-50 {
+  min-height: 50vh;
+}
+.min-vh-75 {
+  min-height: 75vh;
+}
+.font-size-icon{
+  font-size: 120px;
+}
+.all-white a{
+  h1, h2, h3, h4, h5, h6, p, div, span , a {
+    color: white !important
+  }
+}
+.all-dark a {
+  h1, h2, h3, h4, h5, h6, p, div, span , a {
+    color: black !important
+  }
+}

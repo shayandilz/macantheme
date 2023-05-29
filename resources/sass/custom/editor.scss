@@ -1,0 +1,44 @@
+.editor {
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-bottom: 1rem;
+  }
+}
+
+strong {
+  font-weight: 600 !important;
+}
+
+//list styles
+ol {
+  list-style-type: urdu !important;
+}
+
+.sidebar-container {
+  a {
+    color: $danger;
+  }
+    ul,ol{
+        @extend .list-unstyled;
+    }
+    p a{
+        word-break: break-word;
+        direction: ltr!important;
+    }
+}
+
+.table-of-contents {
+  a {
+    color: rgba(33, 33, 33, 0.47);
+    font-weight: 600;
+    transition: all 0.1s linear;
+  }
+
+  .active-item {
+    color: $danger;
+  }
+}
+
+ul, ol {
+  padding: 0;
+  line-height: 1.2;
+}
