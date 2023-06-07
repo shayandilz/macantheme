@@ -16,7 +16,7 @@ $column_value = $column_style['value'];
 
             </div>
         </div>
-        <?php get_template_part('template-parts/navigation-post'); ?>
+        <?php get_template_part('template-parts/services-navigation'); ?>
     </article>
 
 <?php get_footer();

@@ -73,11 +73,23 @@ while (have_posts()) :
                     <article class="col-lg-9 col-12 text-justify text-dark lh-lg sidebar-container">
                         <div class="bg-white p-3 h-100 shadow-sm gx-0">
                             <?php the_content(); ?>
+                            <div class="text-center border-top border-1 border-danger">
+                                <h5 class="mb-0 my-5">
+                                    ارسال نظر
+                                </h5>
+                                <?php
+                                if (comments_open() || get_comments_number()) :
+                                    comments_template();
+                                endif;
+                                ?>
+                            </div>
                         </div>
+
                     </article>
                 </div>
             </div>
         </div>
+
         <div style="background-color: #f1f1f1">
             <div class="custom-container py-5">
                 <div class="row justify-content-center align-items-stretch">

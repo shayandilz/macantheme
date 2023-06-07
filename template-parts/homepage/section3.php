@@ -95,7 +95,7 @@ if (have_rows('section_3')):
                                 if ($loopPortfolio->have_posts()) {
                                     while ($loopPortfolio->have_posts()) : $loopPortfolio->the_post(); $b++;
                                         $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
-                                        if ($category_ids[0]->term_id == 17){ ?>
+                                        if ($category_ids[0]->term_id == 18){ ?>
                                             <div class="col-lg-6 col-12 aos-animate aos" data-aos="zoom-in"
                                                  data-aos-delay="<?= $b; ?>00">
                                                 <?php get_template_part('template-parts/website-hover-card'); ?>

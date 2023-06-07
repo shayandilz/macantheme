@@ -38,6 +38,9 @@
     if (is_page_template('contact.php')) { ?>
         style="background-color: <?= get_field('contact_single_background', 'option') ?>"
     <?php }
+    if (is_page_template('work.php')) { ?>
+        style="background-color: <?= get_field('work_single_background', 'option') ?>"
+    <?php }
     if (is_home() || is_category()) { ?>
         style="background-color: <?= get_field('blog_single_background', 'option') ?>"
     <?php }

@@ -7,7 +7,7 @@ $(document).ready(function () {
     // Handle category button click
     $('.category-button').click(function () {
         let categoryId = $(this).data('category-id');
-        window.location.href = 'macan-blog/#' + categoryId;
+        window.location.href = 'blog/#' + categoryId;
     });
 })
 

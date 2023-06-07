@@ -520,3 +520,22 @@ function searchfilter($query)
 }
 
 add_filter('pre_get_posts', 'searchfilter');
+
+function custom_post_type_args( $args, $post_type ) {
+    // Change 'project' to the slug of your custom post type
+    if ( 'portfolio' === $post_type ) {
+        // Set the with_front parameter to false
+        $args['rewrite']['with_front'] = false;
+    }
+    if ( 'services' === $post_type ) {
+        // Set the with_front parameter to false
+        $args['rewrite']['with_front'] = false;
+    }
+    return $args;
+}
+add_filter( 'register_post_type_args', 'custom_post_type_args', 10, 2 );
+
+function register_my_theme_with_wpml() {
+    register_theme_directory( get_stylesheet_directory() );
+}
+add_action( 'after_setup_theme', 'register_my_theme_with_wpml' );

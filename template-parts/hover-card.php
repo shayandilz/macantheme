@@ -18,6 +18,7 @@ if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio') ){
     <div class="h-100 <?= $ratio; ?>">
         <?php $archive_image = get_field('cover_image_for_archive'); ?>
         <img src="<?php echo $archive_image['url']; ?>" class="object-fit"
+             title="<?php the_title(); ?>"
              alt="<?php the_title(); ?>">
     </div>
     <div class="direction-aware-hover__content position-absolute start-0 end-0 p-0 end-0 w-100 h-100 d-flex justify-content-center align-items-center flex-column">
