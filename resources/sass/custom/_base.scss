@@ -4,7 +4,7 @@ html, body {
 
 // SCROLL bar styles
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   height: 0;
 }
 ::-webkit-scrollbar-track {
@@ -12,8 +12,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $warning;
-  border-radius: 2rem;
+  background: #662d91;
 }
 
 /* Handle on hover */

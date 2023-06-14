@@ -17,6 +17,13 @@ function theme_scripts()
     }
 // CSS files
     wp_enqueue_style('style', get_stylesheet_directory_uri() . '/public/css/style.css', array(),);
+    $url = $_SERVER["REQUEST_URI"];
+
+    $slugEN = strpos($url, 'en');
+    if ($slugEN){
+        wp_enqueue_style('ltr-style', get_stylesheet_directory_uri() . '/public/css/ltr.css', array(),);
+        wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh-en/fontface.css', array());
+    }
 //    JS files
     wp_enqueue_script('main', get_template_directory_uri() . '/public/js/app.js', '1.0.0', true);
 

@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         myModalEl.addEventListener('shown.bs.modal', function (event) {
             setTimeout(function () {
                 menu_items.forEach((item) => {
-                    item.classList.add('aos-animate');
+                        item.classList.add('aos-animate');
                 });
                 socialIcons.forEach((social) => {
                     social.classList.add('aos-animate');

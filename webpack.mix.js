@@ -19,7 +19,7 @@ mix.js('resources/js/blog/app.js', 'public/js/blog/app.js');
 mix.js('resources/js/single-blog/app.js', 'public/js/single-blog/app.js');
 mix.js('resources/js/single-portfolio/app.js', 'public/js/single-portfolio/app.js');
 // Add more mix.js() calls for each JS file
-
+mix.sass('resources/sass/ltr.scss', 'public/css')
 mix.sass('resources/sass/custom.scss', 'public/css/style.css', {}, [
     require("rtlcss")({}),
 ]).options({

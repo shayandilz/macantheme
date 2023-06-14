@@ -77,8 +77,8 @@ class Search {
                                         </div>
                                         <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end">
                                             <div class="textBlog h-100 w-100 text-center">
-                                            <h6 class="text-center text-white position-absolute bottom-0 start-0 end-0 ">${item.title}</h6>
-                                            <div class="position-absolute bottom-0 start-0 end-0 mb-3 fs-6"><p>${item.content}</p></div>
+                                            <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 ">${item.title}</p>
+                                            <div class="excerpt position-absolute bottom-0 start-0 end-0 mb-3 fs-6"><p class="text-white px-2">${item.content}</p></div>
                                             </div>
                                         </div>
                                     </a>

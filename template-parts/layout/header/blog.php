@@ -8,7 +8,7 @@
                 'container' => false,
                 'menu_id' => 'navbarMenu',
                 'item_class' => 'nav-item',
-                'link_class' => 'nav-link',
+                'link_class' => 'nav-link hover-text',
                 'depth' => 2,
             ));
             ?>

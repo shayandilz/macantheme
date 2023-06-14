@@ -8,7 +8,7 @@
         $logo = get_field('site_logo', 'option');
         ?>
         <img class="lazy"
-             height="auto"
+             height="40"
              width="150"
              src="<?= $logo['url'] ?>"
              alt="<?= get_bloginfo('name'); ?>">
@@ -31,19 +31,19 @@
         </div>
     </div>
 
-    <nav class="modal-dialog modal-dialog-centered bg-transparent modal-xl menu d-flex justify-content-start flex-column">
+    <nav class="modal-dialog h-100 bg-transparent modal-xl menu d-flex justify-content-between flex-column align-items-center pt-5">
         <?php
         wp_nav_menu(array(
             'theme_location' => 'headerMenuLocation',
-            'menu_class' => 'navbar-nav pe-0 text-white list-unstyled text-center fs-3 w-100 mb-0',
+            'menu_class' => 'navbar-nav pe-0 text-white list-unstyled text-center fs-3 w-100 mb-5',
             'container' => false,
             'menu_id' => 'navbarTogglerMenu',
             'item_class' => 'nav-item',
-            'link_class' => 'nav-link',
+            'link_class' => 'nav-link hover-text lazy',
             'depth' => 2,
         ));
         ?>
-        <div class="social_icons position-absolute bottom-0">
+        <div class="social_icons position-absolute bottom-0 pb-5 mb-3">
             <div>
                 <ul class="list-unstyled d-flex align-items-center justify-content-center mb-0">
                     <?php
@@ -51,9 +51,10 @@
                         $first = true; // Variable to track the first <li> element
                         while (have_rows('social_list', 'option')) : the_row();
                             $icon_class = get_sub_field('icon_class');
+                            $title = get_sub_field('social_title');
                             $url = get_sub_field('link'); ?>
                             <li class="<?php if (!$first) echo 'p-1'; ?>">
-                                <a title="<?= $icon_class; ?>" href="<?= esc_url($url); ?>">
+                                <a title="<?= $title; ?>" href="<?= esc_url($url); ?>">
                                     <span class="<?= $icon_class; ?>"></span>
                                 </a>
                             </li>
@@ -73,7 +74,7 @@
 
 </div>
 
-<button class="bg-transparent border-0 btn position-absolute top-0 end-0 pt-3 pe-3"
+<button class="bg-transparent border-0 btn top-0 end-0 pt-3 pe-3 <?= is_singular('post') ? 'position-fixed' : 'position-absolute'; ?> "
         type="button"
         aria-labelledby="search"
         aria-label="Search"

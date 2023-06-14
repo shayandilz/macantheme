@@ -71,9 +71,9 @@ while (have_posts()) :
                         </div>
                     </div>
                     <article class="col-lg-9 col-12 text-justify text-dark lh-lg sidebar-container">
-                        <div class="bg-white p-3 h-100 shadow-sm gx-0">
+                        <div class="content bg-white py-3 h-100 shadow-sm gx-0">
                             <?php the_content(); ?>
-                            <div class="text-center border-top border-1 border-danger">
+                            <div class="text-center border-top border-1 border-danger mt-5">
                                 <h5 class="mb-0 my-5">
                                     ارسال نظر
                                 </h5>

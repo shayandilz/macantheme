@@ -40,7 +40,7 @@ if (have_rows('section_5')):
                                         $client_image = get_field('img_class', get_the_ID(), 'clients');
                                         $client_attr = get_field('client_attr', get_the_ID(), 'clients');
                                         if (!empty($client_attr)): ?>
-                                            <img class="<?= $client_image; ?>"
+                                            <img class="<?= $client_image; ?>" width="110" height="110"
                                                  src="<?php echo $client_attr; ?>"
                                                  alt="<?php the_title(); ?>"/>
                                         <?php endif; ?>

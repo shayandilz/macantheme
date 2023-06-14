@@ -172,7 +172,9 @@ progress::-webkit-progress-bar {
 
 }
 
-
+.hover-text:hover {
+  color: #bbb;
+}
 .back-button {
   display: block;
   padding: 10px;
@@ -184,7 +186,7 @@ progress::-webkit-progress-bar {
   font-size: 18px!important;
   margin-top: 20px !important;
   li{
-    @extend .my-2;
+    @extend .my-0;
   }
 }
 
@@ -243,6 +245,9 @@ progress::-webkit-progress-bar {
         transition: all 0.3s linear;
       }
       li:hover{
+        a{
+          color: white;
+        }
         color: #fff;
         background-color: $danger;
       }
@@ -257,4 +262,28 @@ progress::-webkit-progress-bar {
       }
     }
   }
+}
+//social icons
+.social_icons {
+  .icon-Aparat:before , .icon-linkedin:before , .icon-instagram:before {
+    transition: color 0.3s linear;
+  }
+  a[title~="Aparat"]:hover {
+    .icon-Aparat:before {
+      color: #ed145b !important;
+      -webkit-text-fill-color: #ed145b !important;
+    }
+  }
+a[title~="Linkedin"]:hover {
+  .icon-linkedin:before {
+    color: #0077b5 !important;
+    -webkit-text-fill-color: #0077b5 !important;
+  }
+}
+ a[title~="Instagram"]:hover {
+   .icon-instagram:before {
+     color: #e7008a;
+     -webkit-text-fill-color: #e7008a !important;
+   }
+ }
 }

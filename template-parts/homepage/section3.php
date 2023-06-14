@@ -23,7 +23,7 @@ if (have_rows('section_3')):
                     <?= $section_title; ?>
                 </h2>
                 <div class="text-center mt-2 ">
-                    <a class="MoreLink position-relative d-inline-block lazy small"
+                    <a class="MoreLink position-relative d-inline-block lazy fs-6"
                        data-aos="fade-down" data-aos-delay="300"
                        href="<?php echo get_post_type_archive_link('portfolio'); ?>">
                         <?= $section_link; ?>
@@ -63,7 +63,7 @@ if (have_rows('section_3')):
                     <?php } ?>
                 </ul>
 
-                <div class="tab-content row" id="myTabContent">
+                <div class="tab-content row justify-content-center" id="myTabContent">
 
                     <?php
                     $b = 0;
@@ -71,7 +71,7 @@ if (have_rows('section_3')):
                     foreach ($terms as $term) {
                         $s++;
                         $category_id = $term->term_id; ?>
-                        <div class="tab-pane fade <?php if ($s == 1) {
+                        <div class="tab-pane col-lg-10 fade <?php if ($s == 1) {
                             echo 'show active';
                         }
                         ?>" id="cat-<?= $category_id; ?>" role="tabpanel"

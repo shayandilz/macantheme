@@ -4,6 +4,18 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 $(document).ready(function () {
+    $('#offcanvasBody').click(function(e) {
+        if (e.target === this) {
+            // Perform your action here
+            $('#offcanvasTop').removeClass('show');
+            $('#offcanvasTop').removeAttr('aria-modal');
+            $('#offcanvasTop').removeAttr('role');
+            $('.offcanvas-backdrop').remove();
+            $('#search-form').val('');
+            $('.search-overlay__results').empty();
+            $('.search-submit').css('display' , 'none');
+        }
+    });
     // Handle category button click
     $('.category-button').click(function () {
         let categoryId = $(this).data('category-id');

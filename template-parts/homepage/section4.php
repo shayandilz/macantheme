@@ -17,7 +17,7 @@ if (have_rows('section_4')):
                             <?= $section_title; ?>
                         </h2>
                         <div class="text-center mt-2 ">
-                            <a class="MoreLink position-relative d-inline-block lazy small"
+                            <a class="MoreLink position-relative d-inline-block lazy fs-6"
                                data-aos="fade-down" data-aos-delay="300"
                                href="<?php echo get_post_type_archive_link('post'); ?>">
                                 <?= $section_link; ?>

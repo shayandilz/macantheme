@@ -64,9 +64,10 @@
                         $first = true; // Variable to track the first <li> element
                         while (have_rows('social_list', 'option')) : the_row();
                             $icon_class = get_sub_field('icon_class');
+                            $title = get_sub_field('social_title');
                             $url = get_sub_field('link'); ?>
                             <li class="<?php if (!$first) echo 'p-1'; ?>">
-                                <a title="<?= $icon_class; ?>" href="<?= esc_url($url); ?>">
+                                <a title="<?= $title; ?>" href="<?= esc_url($url); ?>">
                                     <span class="<?= $icon_class; ?> lh-base"></span>
                                 </a>
                             </li>

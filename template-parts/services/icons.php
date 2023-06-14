@@ -13,7 +13,7 @@
                     <div class="rounded-circle bg-opacity-50 bg-white mx-auto text-dark" title=" <?= $title; ?>">
                         <span class="<?= $icon; ?> d-flex justify-content-center align-items-center font-size-icon"></span>
                     </div>
-                    <h5 class="small text-white fw-semibold text-center">
+                    <h5 class="fs-6 text-white fw-semibold text-center">
                         <?= $title; ?>
                     </h5>
                 </div>

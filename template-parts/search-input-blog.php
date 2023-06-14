@@ -1,4 +1,4 @@
-<div class="search-box position-relative w-100 mx-auto">
+<div class="search-box position-relative w-100 mx-auto mt-5">
     <div class="search-icon position-absolute text-center"><i class="bi bi-search search-icon text-danger"></i></div>
 
     <input class="z-top position-absolute w-100 h-100 end-0 top-0 text-danger bg-transparent border-0" type="text" placeholder="عبارت مورد نظرتان را تایپ کنید ..." id="search-input">

@@ -110,7 +110,7 @@
             <i class="bi bi-x"></i>
         </button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body" id="offcanvasBody">
         <?php get_template_part('template-parts/layout/header/search'); ?>
     </div>
 </div>

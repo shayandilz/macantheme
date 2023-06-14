@@ -37,7 +37,7 @@ if (have_rows('section_2')):
                                     <?php echo $svg_icon; ?>
                                 </div>
                             <?php endif; ?>
-                            <h2 class="text-center text-white small">
+                            <h2 class="text-center text-white fs-6">
                                 <?php the_title(); ?>
                             </h2>
                         </a>

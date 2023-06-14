@@ -3,6 +3,8 @@ $category_detail = get_the_terms(get_the_ID(), 'portfolio_categories');
 
 if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio') ){
     $ratio = 'ratio-1x1 ratio';
+}elseif ($category_detail[0]->term_id == 17 && is_post_type_archive('portfolio') ){
+    $ratio = 'ratio-1x1 ratio';
 }else{
     $ratio = 'ratio-16x9 ratio';
 }
@@ -22,9 +24,9 @@ if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio') ){
              alt="<?php the_title(); ?>">
     </div>
     <div class="direction-aware-hover__content position-absolute start-0 end-0 p-0 end-0 w-100 h-100 d-flex justify-content-center align-items-center flex-column">
-        <h4 class="text-center fs-5">
+        <p class="text-center fs-5">
             <?php the_title(); ?>
-        </h4>
+        </p>
         <span class="small">
              <?php
 

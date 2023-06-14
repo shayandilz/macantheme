@@ -37,6 +37,7 @@ class Blog {
                     content: post.content.rendered,
                     date: post.date,
                     link: post.link,
+                    slug : post.slug,
                     categories: post.categories
                 };
             });
@@ -176,8 +177,8 @@ class Blog {
             </div>
             <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end">
               <div class="textBlog h-100 w-100 text-center lazy">
-                <h6 class="text-center text-white position-absolute bottom-0 start-0 end-0 lazy">${title}</h6>
-                <div class="position-absolute bottom-0 start-0 end-0 mb-3 fs-6 text-white lazy">${excerpt}</div>
+                <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy">${title}</p>
+                <div class="excerpt position-absolute bottom-0 start-0 end-0 mb-3 fs-6 text-white lazy">${excerpt}</div>
               </div>
             </div>
           </a>
