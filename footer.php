@@ -102,16 +102,21 @@
     </div>
 
 </div>
-<div class="offcanvas offcanvas-top bg-transparent" style="backdrop-filter: blur(5px);" tabindex="-1" id="offcanvasTop"
-     aria-labelledby="offcanvasTopLabel">
-    <div class="offcanvas-header">
-        <button type="button" class="search-close bg-transparent border-0 text-white fs-3" data-bs-dismiss="offcanvas"
-                aria-label="Close">
-            <i class="bi bi-x"></i>
-        </button>
-    </div>
-    <div class="offcanvas-body" id="offcanvasBody">
-        <?php get_template_part('template-parts/layout/header/search'); ?>
+<div class="modal modal-xl" style="backdrop-filter: blur(5px);" tabindex="-1" id="searchModal"
+     aria-labelledby="modalSearchLabel">
+    <div class="modal-dialog">
+        <div class="modal-content bg-transparent">
+            <div class="modal-header">
+                <button type="button" class="search-close bg-transparent border-0 text-white fs-3"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php get_template_part('template-parts/layout/header/search'); ?>
+            </div>
+        </div>
     </div>
 </div>
 <?php get_template_part('template-parts/layout/backToTop'); ?>

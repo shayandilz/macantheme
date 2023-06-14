@@ -22,6 +22,7 @@
         get_template_part('template-parts/layout/header/index');
     }
     ?>
+
 </header>
 
 <main
@@ -49,6 +50,6 @@
     <?php }
     ?>
 >
-
+<!--    --><?php //get_template_part('template-parts/preload');?>
 
 

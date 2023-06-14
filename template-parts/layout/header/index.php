@@ -78,8 +78,8 @@
         type="button"
         aria-labelledby="search"
         aria-label="Search"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasTop"
+        data-bs-toggle="modal"
+        data-bs-target="#searchModal"
         aria-controls="offcanvasTop"
         style="z-index: 1000">
     <i class="bi bi-search text-white fs-4"></i>

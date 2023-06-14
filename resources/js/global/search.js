@@ -8,7 +8,7 @@ class Search {
         this.openButton = $(".js-search-trigger");
         this.closeButton = $(".search-close, .mobile-overlay__close");
         this.searchOverlay = $(".search-overlay");
-        this.searchField = $("input[type=search]:visible");
+        this.searchField = $("#search-form");
         this.resultsDiv = $(".search-overlay__results");
         this.searchSubmit = $(".search-submit");
 
@@ -44,7 +44,7 @@ class Search {
             clearTimeout(this.typingTimer);
             if (this.searchField.val()) {
                 if (!this.isSpinnerVisible) {
-                    this.resultsDiv.html(`<div class="text-center mt-2"><div class="spinner-border align-baseline text-white" role="status"></div></div>`);
+                    this.resultsDiv.html(`<div class="text-center mt-4"><div class="spinner-border align-baseline text-white" role="status"></div></div>`);
                     this.isSpinnerVisible = true;
 
                 }
@@ -63,10 +63,10 @@ class Search {
         $.getJSON(jsData.root_url + '/wp-json/search/v1/search?term=' + this.searchField.val(), (results) => {
             this.resultsDiv.html(`
                 <div class="pt-3">
-                        <h5  class="mb-2 text-white">مقالات</h5>
+                        <h5  class="my-3 text-white text-center ">مقالات</h5>
                         ${results.post.length ? '<div class="row g-2">' : '<p class="p-2 m-0 border-top">هیچ مقاله ای یافت نشد</p>'}
                         ${results.post.map((item, index) =>
-                `<div class="col-lg-3 col-md-4">
+                `<div class="col-lg-4 col-md-6">
                                 <article class="position-relative overflow-hidden" title="${item.title}">
                                     <span class="d-inline-block position-absolute top-0 end-0 z-top p-2 small text-white" style="background-color: rgba(0, 0, 0, .5) !important">
                                         ${item.category}

@@ -49,3 +49,14 @@ ul, ol {
   color: black;
   @extend .bg-danger , .bg-opacity-25;
 }
+
+//pagination
+ul.pagination {
+  li.page-item {
+    span.page-numbers.current {
+      border-bottom: 1px solid white;
+      color: white;
+      padding: 0 3px;
+    }
+  }
+}
