@@ -102,7 +102,7 @@
     </div>
 
 </div>
-<div class="modal modal-xl" style="backdrop-filter: blur(5px);" tabindex="-1" id="searchModal"
+<div class="modal modal-xl" style="backdrop-filter: blur(5px);" aria-hidden="true" tabindex="-1" id="searchModal"
      aria-labelledby="modalSearchLabel">
     <div class="modal-dialog">
         <div class="modal-content bg-transparent">

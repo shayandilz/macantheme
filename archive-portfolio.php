@@ -9,8 +9,8 @@ $portfolio = array(
 $loop_portfolio = new WP_Query($portfolio);
 ?>
 
-    <section class="py-5 container-fluid min-vh-100">
-        <ul class="nav nav-tabs border-bottom-0 justify-content-start justify-content-lg-center gap-4 flex-nowrap overflow-x-scroll overflow-y-hidden w-100 py-2 mt-5 mb-2"
+    <section class="py-5 container-fluid min-vh-100 aos-remover">
+        <ul class="nav nav-tabs border-bottom-0 justify-content-center gap-4 py-2 mt-5 mb-2"
             id="myTab"
             role="tablist">
 
@@ -56,7 +56,7 @@ $loop_portfolio = new WP_Query($portfolio);
                     echo 'show active';
                 } ?>" id="cat-<?php echo $key; ?>" role="tabpanel"
                      aria-labelledby="cat-<?php echo $key; ?>-tab">
-                    <div class="row g-2" id="my-custom-post-type-container">
+                    <div class="row g-2 grid" id="my-custom-post-type-container">
                         <?php
                         $args = array(
                             'post_type' => 'portfolio',
@@ -80,13 +80,11 @@ $loop_portfolio = new WP_Query($portfolio);
                                 $b++;
                                 $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
                                 if ($category_ids[0]->term_id == 18){ ?>
-                                    <div class="col-lg-4 col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
-                                         data-aos-delay="<?= $b; ?>00">
+                                    <div class="col-lg-4 col-md-6 col-12 grid-item">
                                         <?php get_template_part('template-parts/website-hover-card'); ?>
                                     </div>
                                 <?php }else{ ?>
-                                    <div class="col-lg-4 col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
-                                         data-aos-delay="<?= $b; ?>0">
+                                    <div class="col-lg-4 col-md-6 col-12 grid-item"">
                                         <?php get_template_part('template-parts/hover-card'); ?>
                                     </div>
                                 <?php } ?>

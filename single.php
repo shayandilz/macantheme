@@ -59,7 +59,7 @@ while (have_posts()) :
         </div>
         <div style="padding-top: 140px;background-color: #f4f4f4">
             <div class="custom-container min-vh-100 position-relative">
-                <div class="row g-4 py-4">
+                <div class="row g-4 py-4 align-items-lg-start">
                     <div class="col-lg-3 col-12">
                         <div class="sidebar-area shadow-sm">
                             <div class="bg-white px-4 shadow-sm">
@@ -74,7 +74,7 @@ while (have_posts()) :
                         <div class="content bg-white py-3 h-100 shadow-sm gx-0">
                             <?php the_content(); ?>
                             <div class="text-center border-top border-1 border-danger mt-5">
-                                <h5 class="mb-0 my-5">
+                                <h5 class="mb-0 mt-4">
                                     ارسال نظر
                                 </h5>
                                 <?php
@@ -91,11 +91,11 @@ while (have_posts()) :
         </div>
 
         <div style="background-color: #f1f1f1">
-            <div class="custom-container py-5">
+            <div class="custom-container">
                 <div class="row justify-content-center align-items-stretch">
                     <div class="col-12 py-5">
-                        <h6 class="pb-5 text-dark text-center fs-3 fw-bolder">مطالب مرتبط</h6>
-                        <div class="row gap-2 gap-lg-0">
+                        <h6 class="pb-lg-5 pb-2 text-dark text-center fs-3 fw-bolder">مطالب مرتبط</h6>
+                        <div class="row row-gap-4 gap-lg-0 pb-5 pb-lg-0">
                             <?php
                             // Get the current post ID
                             $current_post_id = get_the_ID();
@@ -117,7 +117,7 @@ while (have_posts()) :
                                 /* Start the Loop */
                                 while ($related_posts_query->have_posts()) :
                                     $related_posts_query->the_post(); ?>
-                                    <div class="col-lg-3 col-12">
+                                    <div class="col-lg-3 col-md-6 col-12">
                                         <?php get_template_part('template-parts/blog-post'); ?>
                                     </div>
                                 <?php endwhile;

@@ -8,14 +8,15 @@ if (have_rows('section_3')):
         $color = get_sub_field('background_color');
         $list_services = get_sub_field('select_portfolio');
         ?>
-        <section class="h-100 w-100 position-relative row py-5 py-lg-0 px-0 mx-0 justify-content-lg-between justify-content-center mobile-section-bg overflow-hidden"
+        <section  class="h-100 w-100 position-relative row py-5 py-lg-0 px-0 mx-0 justify-content-lg-between justify-content-center mobile-section-bg overflow-hidden aos-remover"
                  style="background-color: <?php echo esc_attr($color); ?>"
                  data-name="<?= $tab_name; ?>">
             <div class="col-lg-5">
                 <img data-aos="fade-up-left" data-aos-duration="3000" data-aos-disable
                      class="position-absolute bottom-0 start-0 w-75 section3"
                      src="<?php echo esc_url($image['url']); ?>"
-                     alt="<?php echo esc_url($image['alt']); ?>"
+                     alt="<?php echo $image['alt']; ?>"
+                     title="<?php echo $image['alt']; ?>"
                 >
             </div>
             <div class="col-lg-7 g-2 row flex-row-reverse justify-content-center align-content-center mb-5 z-top">
@@ -23,13 +24,14 @@ if (have_rows('section_3')):
                     <?= $section_title; ?>
                 </h2>
                 <div class="text-center mt-2 ">
-                    <a class="MoreLink position-relative d-inline-block lazy fs-6"
+                    <a class="MoreLink position-relative d-inline-block lazy fs-6 py-2"
                        data-aos="fade-down" data-aos-delay="300"
                        href="<?php echo get_post_type_archive_link('portfolio'); ?>">
                         <?= $section_link; ?>
                     </a>
                 </div>
                 <ul class="nav nav-fill my-4 px-5"
+                    data-aos="fade-down" data-aos-delay="500"
                     id="myTab" role="tablist">
                     <?php
                     $terms = array();
@@ -96,12 +98,12 @@ if (have_rows('section_3')):
                                     while ($loopPortfolio->have_posts()) : $loopPortfolio->the_post(); $b++;
                                         $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
                                         if ($category_ids[0]->term_id == 18){ ?>
-                                            <div class="col-lg-6 col-12 aos-animate aos" data-aos="zoom-in"
+                                            <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
                                                  data-aos-delay="<?= $b; ?>00">
-                                                <?php get_template_part('template-parts/website-hover-card'); ?>
+                                                <?php get_template_part('template-parts/home-website-hover-card'); ?>
                                             </div>
                                         <?php }else{ ?>
-                                            <div class="col-lg-6 col-12 aos-animate aos" data-aos="zoom-in"
+                                            <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
                                                  data-aos-delay="<?= $b; ?>00">
                                                 <?php get_template_part('template-parts/hover-card'); ?>
                                             </div>

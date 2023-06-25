@@ -24,7 +24,7 @@ get_header();
                         <?php
                         if ($current_row !== $total_rows) { ?>
                             <div style="background-color: <?= $color ?>"
-                                 class="pt-5 container d-flex justify-content-center flex-column">
+                                 class="pt-5 container-fluid d-flex justify-content-center flex-column">
                                 <div class="text-start text-white pt-5 lh-lg">
                                     <?= $text ?>
                                 </div>
@@ -32,7 +32,7 @@ get_header();
                             </div>
                         <?php } else { ?>
                             <div style="background-color: <?= $color ?>"
-                                 class="pt-5 container d-flex justify-content-center flex-column">
+                                 class="pt-5 container-fluid d-flex justify-content-center flex-column">
                                 <h6 class="text-start mb-4 text-white">ارزش‌ها به سبک ماکان</h6>
                                 <img class="img-fluid" src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
                                 <div class="text-start text-white pt-5 lh-lg">

@@ -1,7 +1,12 @@
 import $ from 'jquery';
+import 'regenerator-runtime/runtime'; // Import the regenerator runtime for async/await support
 
 class Blog {
     constructor() {
+        this.searchInput = $('#search-input');
+        this.searchResults = $('#search-results');
+        this.loadingSpinner = $('#loading-spinner');
+
         this.currentPage = 1;
         this.perPage = 9;
         this.totalPages = 1;
@@ -11,70 +16,66 @@ class Blog {
         this.isLoadMore = false;
         this.loadLatestPosts();
         this.bindEvents();
+
+
     }
 
     bindEvents() {
         let timeout = null;
-        $('#search-input').on('keyup', () => {
+        $(document).on('keyup', '#search-input', () => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-                const keyword = $('#search-input').val();
+                const keyword = this.searchInput.val();
                 this.searchPosts(keyword);
             }, 500);
         });
-        $('#load-more').click(() => {
+        $(document).on('click', '#load-more', () => {
             this.loadMorePosts();
         });
+
     }
 
-    loadLatestPosts() {
-        const spinner = $('#loading-spinner');
-        spinner.toggleClass('d-flex', true); // Show the spinner
-        $.getJSON(jsData.root_url + '/wp-json/wp/v2/posts', (response) => {
+    async loadLatestPosts() {
+        this.searchResults.empty();
+        this.loadingSpinner.toggleClass('d-flex', true);
+        try {
+            const response = await $.getJSON(jsData.root_url + '/wp-json/wp/v2/posts');
             this.posts = response.map(post => {
                 return {
                     title: post.title.rendered,
                     content: post.content.rendered,
                     date: post.date,
                     link: post.link,
-                    slug : post.slug,
+                    slug: post.slug,
                     categories: post.categories
                 };
             });
-            this.getCategories();
-            const categoryId = window.location.hash.substring(1);
+            await this.getCategories();
+            const categoryId = parseInt(localStorage.getItem('categoryID'));
             if (categoryId) {
                 // Render the posts for the category with the matching ID
-                this.renderPosts(categoryId, 1);
+                await this.renderPosts(categoryId, 1);
                 this.currentCategory = categoryId;
             } else {
                 // Render all posts if no category ID is present
-                this.renderPosts();
+                await this.renderPosts();
             }
-        })
-            .fail(() => {
-                console.error('Error: Could not retrieve latest posts.');
-            })
-            .always(() => {
-                spinner.hide(); // Hide the spinner after the request is completed
-                spinner.toggleClass('d-flex', false);
-            })
-            .done(() => {
-                // Call renderButtons to show all categories at first
-                this.renderButtons();
-            });
-
+        } catch (error) {
+            console.error('Error: Could not retrieve latest posts.', error);
+        } finally {
+            this.loadingSpinner.hide();
+            this.loadingSpinner.toggleClass('d-flex', false);
+            this.renderButtons();
+        }
     }
 
-    renderPosts(categoryId = null, page = 1, keyword = null, isLoadMore = false) {
-        const spinner = $('#loading-spinner');
-        spinner.toggleClass('d-flex', true); // Show the spinner
-        if (categoryId !== null) {
-            this.currentPage = 1; // reset page to 1 when new category is selected
+    async renderPosts(categoryId = null, page = 1, keyword = null, isLoadMore = false) {
+        this.loadingSpinner.toggleClass('d-flex', true);
+        if (categoryId === null && this.currentCategory === null) {
+            categoryId = null; // Set categoryId to null if both are null
         }
-        const container = $('#search-results');
         if (this.currentPage === 1) {
-            container.empty();
+            this.searchResults.empty();
         }
         let postsToRender = [];
         let apiUrl = jsData.root_url + '/wp-json/wp/v2/posts?page=' + page + '&per_page=' + this.perPage;
@@ -87,7 +88,9 @@ class Blog {
         }
         // Fetch categories for the new posts
         const categoriesUrl = `${jsData.root_url}/wp-json/wp/v2/categories?include=${postsToRender.map(post => post.categories).flat().join(",")}`;
-        $.getJSON(categoriesUrl, (response) => {
+        try {
+            const categoriesResponse = await fetch(categoriesUrl);
+            const response = await categoriesResponse.json();
             const newCategories = response.map(category => {
                 return {
                     id: category.id,
@@ -98,12 +101,8 @@ class Blog {
             // Update the categories array with new categories
             this.categories = newCategories;
 
-            // Rest of the code...
-        })
-            .fail(() => {
-                console.error('Error: Could not retrieve categories for new posts.');
-            });
-        $.getJSON(apiUrl, (data, status, xhr) => {
+            const dataResponse = await fetch(apiUrl);
+            const data = await dataResponse.json();
             postsToRender = data.map(post => {
                 return {
                     title: post.title.rendered,
@@ -113,46 +112,44 @@ class Blog {
                     image: post.fimg_url,
                     categories: post.categories
                 };
-            })
-            this.totalPages = xhr.getResponseHeader('X-WP-TotalPages')
+            });
+            const totalPages = dataResponse.headers.get('X-WP-TotalPages');
+            this.totalPages = totalPages;
             if (keyword === '') {
                 // Clear the search and display all posts
-                this.loadLatestPosts();
+                await this.loadLatestPosts();
             }
             if (postsToRender.length === 0) {
                 const noPostsHtml = '<div class="d-flex justify-content-center align-items-center mt-5 text-white"><h3>هیچ پستی یافت نشد.</h3></div>';
-                container.append(noPostsHtml);
+                this.searchResults.append(noPostsHtml);
             } else {
-                this.displayPosts(postsToRender);
+                await this.displayPosts(postsToRender);
             }
-            spinner.hide(); // Hide the spinner after the request is completed
-            spinner.toggleClass('d-flex', false);
+            this.loadingSpinner.hide(); // Hide the spinner after the request is completed
+            this.loadingSpinner.toggleClass('d-flex', false);
             if (isLoadMore) {
-                setTimeout(function() {
+                setTimeout(function () {
                     window.scrollTo({
                         top: document.body.scrollHeight,
                         behavior: 'smooth'
                     });
                 }, 0);
             }
-        });
+        } catch (error) {
+            console.error('Error: Could not retrieve categories for new posts.');
+        }
     }
-
 
     loadMorePosts() {
         if (this.currentPage < this.totalPages) {
             this.currentPage++;
-            this.renderPosts(null, this.currentPage,null, true);
+            this.renderPosts(null, this.currentPage, null, true);
         }
 
     }
 
-    displayPosts(posts) {
-        const container = $('#search-results');
-        if (this.currentPage === 1) {
-            // container.empty();
-        }
-        let i = 0
+    async displayPosts(posts) {
+        let i = 0;
         posts.forEach(post => {
             i++;
             const title = post.title;
@@ -163,39 +160,51 @@ class Blog {
             const categoriesHtml = categories.map(catId => {
                 const category = this.categories.find(cat => cat.id === catId);
                 if (category) {
-                    return `<span class="category">${category.name}</span>`;
+                    return `<span data-category-id="${category.id}" class="category category-button">${category.name}</span>`;
                 }
                 return '';
             }).join('');
 
             const postHtml = `<div class="col-lg-4 col-md-6">
-        <article data-aos-delay="${i}00" data-aos="zoom-in" class="position-relative overflow-hidden" title="${title}">
-          <span class="d-inline-block position-absolute top-0 end-0 z-top p-2 small text-white" style="background-color: rgba(0, 0, 0, .5) !important">${categoriesHtml}</span>
-          <a href="${link}">
-            <div class="ratio ratio-16x9">
-              <img src="${image}" class="object-fit" alt="${title}">
+      <article data-aos-delay="${i}00" data-aos="zoom-in" class="position-relative overflow-hidden" title="${title}">
+        <span class="d-inline-block position-absolute top-0 end-0 z-top p-2 small text-white " style="background-color: rgba(0, 0, 0, .5) !important">${categoriesHtml}</span>
+        <a href="${link}">
+          <div class="ratio ratio-16x9">
+            <img src="${image}" class="object-fit" alt="${title}">
+          </div>
+          <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end">
+            <div class="textBlog h-100 w-100 text-center lazy">
+              <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy">${title}</p>
+              <div class="excerpt position-absolute bottom-0 start-0 end-0 mb-3 fs-6 text-white lazy px-3">${excerpt}</div>
             </div>
-            <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end">
-              <div class="textBlog h-100 w-100 text-center lazy">
-                <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy">${title}</p>
-                <div class="excerpt position-absolute bottom-0 start-0 end-0 mb-3 fs-6 text-white lazy">${excerpt}</div>
-              </div>
-            </div>
-          </a>
-        </article>
-      </div>`;
+          </div>
+        </a>
+      </article>
+    </div>`;
 
-            container.append(postHtml);
+            this.searchResults.append(postHtml);
+        });
+        // Run the provided code after posts are rendered
+        $(document).ready(function () {
+            $('.category-button').click(function () {
+                let categoryId = $(this).data('category-id');
+                localStorage.setItem('categoryID', categoryId);
+
+                // Check if the current URL contains "/blog"
+                if (window.location.href.includes('/blog')) {
+                    location.href = window.location.href; // Refresh the page
+                } else {
+                    window.location.href = 'blog/';
+                }
+            });
         });
         if (this.currentPage == this.totalPages) {
             $('#load-more').hide();
         }
     }
 
-
     searchPosts(keyword, categoryId = null) {
-        const container = $('#search-results');
-        container.empty();
+        this.searchResults.empty();
         this.renderPosts(categoryId, 1, keyword);
         const url = `${jsData.root_url}/wp-json/wp/v2/posts?search=${keyword}`;
         $.getJSON(url, (data) => {
@@ -227,80 +236,87 @@ class Blog {
 
     renderButtons() {
         const container = $('#category-filter');
-        const searchResult = $('#search-results');
         container.empty(); // Clear the container
-        if (this.categories.length > 0) { // add this check
-            const categoryId = Number(window.location.hash.substring(1));
-            this.categories.forEach(category => {
-                const button = $('<button>').text(category.name).addClass('button-dark button');
+
+        if (this.categories.length > 0) {
+            const categoryId = parseInt(localStorage.getItem('categoryID'));
+
+            // Render all the category buttons except "Uncategorized"
+            const categoryButtons = this.categories
+                .filter(category => category.id !== 1)
+                .map(category => {
+                    const button = $('<button>').text(category.name).addClass('button-dark button p-1 px-lg-4');
+                    button.click(() => {
+                        container.find('button').removeClass('active');
+                        button.addClass('active');
+                        this.renderPosts(category.id, 1);
+                        this.currentCategory = category.id;
+                        $('#load-more').show();
+                    });
+                    return $('<li>').addClass('nav-item').append(button);
+                });
+
+            // Render the "Uncategorized" button
+            const uncategorizedButton = this.categories.find(category => category.id === 1);
+            if (uncategorizedButton) {
+                const button = $('<button>').text(uncategorizedButton.name).addClass('button-dark button p-1 px-lg-4');
                 button.click(() => {
                     container.find('button').removeClass('active');
                     button.addClass('active');
-                    this.renderPosts(category.id, 1);
-                    this.currentCategory = category.id;
-                    window.location.hash = '';
-                    // searchResult.empty(); // Clear the container
+                    this.renderPosts(uncategorizedButton.id, 1);
+                    this.currentCategory = uncategorizedButton.id;
                     $('#load-more').show();
                 });
                 const listItem = $('<li>').addClass('nav-item').append(button);
-                container.append(listItem);
-                // Check if the current category matches the category ID in the URL's hashtag
-                if (category.id === categoryId) {
-                    // // Activate the button for the category with the matching ID
-                    button.addClass('active');
-                    this.currentCategory = category.id;
-                }
-            });
+                categoryButtons.push(listItem);
+            }
 
+            // Render the "All" button
+            const allButton = $('<button>').text('مشاهده همه').addClass('button-dark button active p-1 px-lg-4');
+            allButton.click(() => {
+                container.find('button').removeClass('active');
+                allButton.addClass('active');
+                this.loadLatestPosts();
+                localStorage.setItem('categoryID', '');
+                this.currentCategory = null;
+                $('#load-more').show();
+            });
+            const listItem = $('<li>').addClass('nav-item').append(allButton);
+            categoryButtons.unshift(listItem);
+
+            container.append(categoryButtons);
+
+            // Check if the current category matches the category ID in the URL's hashtag
+            if (categoryId) {
+                const activeButton = container.find(`button[data-id="${categoryId}"]`);
+                if (activeButton) {
+                    container.find('button').removeClass('active');
+                    activeButton.addClass('active');
+                    this.currentCategory = categoryId;
+                }
+            }
         }
     }
 
-    getCategories() {
-        const categoriesUrl = jsData.root_url + '/wp-json/wp/v2/categories?per_page=100';
-        $.getJSON(categoriesUrl, (response) => {
-            this.categories = response.map(category => {
+    async getCategories() {
+        const categoriesUrl = jsData.root_url + '/wp-json/wp/v2/categories';
+        try {
+            const response = await fetch(categoriesUrl);
+            const data = await response.json();
+            this.categories = data.map(category => {
                 return {
                     id: category.id,
                     name: category.name
                 };
             });
             this.renderButtons();
-        })
-            .fail(() => {
-                console.error('Error: Could not retrieve categories.');
-            });
+        } catch (error) {
+            console.error('Error: Could not retrieve categories.');
+        }
     }
 
-    getCategoriesForPosts(posts) {
-        const categories = [];
-        posts.forEach(post => {
-            post.categories.forEach(category => {
-                if (!categories.some(cat => cat.id === category)) {
-                    const newCategory = this.categories.find(cat => cat.id === category);
-                    categories.push(newCategory);
-                }
-            });
-        });
-        return categories;
-    }
 
-    updateCategories() {
-        const newCategories = [];
-        this.posts.forEach(post => {
-            post.categories.forEach(category => {
-                const index = newCategories.findIndex(c => c.id === category);
-                if (index === -1) {
-                    const cat = this.categories.find(c => c.id === category);
-                    newCategories.push(cat);
-                }
-            });
-        });
-        this.categories = newCategories;
-        this.renderButtons();
-    }
 }
-
-export default Blog;
 document.addEventListener('DOMContentLoaded', function () {
     const blog = new Blog();
 
@@ -316,5 +332,3 @@ document.addEventListener('DOMContentLoaded', function () {
         $(".search-icon").removeClass("si-rotate");
     });
 })
-
-

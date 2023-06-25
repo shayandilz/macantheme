@@ -8,10 +8,21 @@
   .social_border{
     border-right: 1px solid #fff;
   }
+  #headerModal {
+    .modal-dialog {
+      width: fit-content;
+      min-width: 200px;
+    }
+  }
 }
 @include media-breakpoint-down(lg) {
+  .textBlog{
+    p{
+      font-size: 14px!important;
+    }
+  }
   .single-portfolio .min-vh-75{
-    min-height: 70vh!important;
+    min-height: 85vh!important;
   }
   .mac:after{
     width: 13%!important;
@@ -49,12 +60,12 @@
     height: auto!important;
     img {
       width: 100%!important;
-      padding: 0 20%!important;
+      padding: 0 28%!important;
     }
     .imgBX{
       top: 3%!important;
       left: 50%!important;
-      width: 55%!important;
+      width: 41%!important;
       height: calc(100% - 7%)!important;
       transform: translateX(-50%)!important;
       transition: 2s!important;
@@ -137,6 +148,19 @@
 
 }
 @include media-breakpoint-down(xl) {
+  #CreatSVG{
+    height: 100px!important;
+  }
+  #Camp-Svg,
+  #WebDevelop-SVG{
+    height: 70px!important;
+  }
+  #Strategy-SVG,
+  #Plan-Media,
+  #Cont-Svg,
+  #PR-Svg{
+    height: 80px!important;
+  }
 }
 @include media-breakpoint-down(sm) {
   .fs-1 {
@@ -165,6 +189,9 @@
   }
   .font-size-icon{
     font-size: 80px;
+  }
+  .button-white.button{
+    padding: 0.25rem!important;
   }
 }
 

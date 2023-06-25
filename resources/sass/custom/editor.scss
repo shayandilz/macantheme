@@ -12,7 +12,7 @@ strong {
 ol {
   list-style-type: urdu !important;
   li {
-    margin-right: 1rem;
+    margin-left: 1rem;
   }
 }
 
@@ -43,9 +43,9 @@ ol {
 
 ul, ol {
   padding: 0;
-  line-height: 1.2;
+  line-height: 1.7;
 }
-::selection{ /* Code for Firefox */
+body.single-post main *::selection{ /* Code for Firefox */
   color: black;
   @extend .bg-danger , .bg-opacity-25;
 }
@@ -59,4 +59,97 @@ ul.pagination {
       padding: 0 3px;
     }
   }
+}
+//box before text
+.sidebar-container {
+  // pre for References
+  pre {
+    background: hsl(0deg 0% 94% / 36%);
+    border: 2px solid #c9c9c97a;
+    display: block;
+    font-size: 1rem;
+    margin: 10px 40px;
+    padding: 20px;
+    direction: rtl;
+    @extend .text-truncate;
+    a {
+      overflow-x: scroll;
+      color: #808080c4!important;
+    }
+  }
+  .table-of-contents {
+    ul {
+      list-style: square !important;
+      margin-left: 10px;
+    }
+  }
+  .content {
+    ul {
+      list-style: square !important;
+    }
+    h2 {
+      font-size: 25px!important;
+    }
+    h3 {
+      font-size: 23px!important;
+    }
+    h4 {
+      font-size: 21px!important;
+    }
+    h1,h2,h3,h4,h5,h6 , p:not(:has(img)) , span , div ,ol , ul {
+      @extend .px-3
+    }
+  }
+  b {
+    padding: 5px;
+    @extend .bg-danger , .bg-opacity-25;
+    line-height: 2;
+  }
+  blockquote {
+    @extend .p-lg-5 , .p-4 ;
+    background: #e3e0e0;
+    color: black;
+    > p:first-child:before {
+      background-color: transparent !important;
+      width: 10px !important;
+      content: '"';
+    }
+    > p:last-child:after {
+      content: ' "';
+      width: 10px !important;
+    }
+  }
+  p:nth-child(1):before {
+    transform: translate(+5px,5px);
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: $danger;
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+.content {
+  p:has(> img) {
+    text-align: center;
+  }
+  ul {
+    list-style: unset;
+    margin-left: 20px!important;
+  }
+}
+//comments
+#wpdcom {
+  & *:not(input , .wpd-comment-label , .wpd-comment-author , .wpd-reply-to , .wpd-reply-button , .wc_comment) {
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+  .wpd-second-button, .wpd-prim-button , .wc_comm_submit , input[type=text]{
+    font-family: 'Yekan';
+  }
+  .wpd-form .wpd-textarea-wrap {
+    flex-basis: 100% !important;
+  }
+  max-width: unset!important;
 }

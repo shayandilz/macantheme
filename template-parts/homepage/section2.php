@@ -8,7 +8,7 @@ if (have_rows('section_2')):
         $color = get_sub_field('background_color');
         $list_services = get_sub_field('select_services');
         ?>
-        <section class="h-100 w-100 position-relative row px-0 mx-0 justify-content-between section2"
+        <section  class="h-100 w-100 position-relative row px-0 mx-0 justify-content-between section2 aos-remover"
                  style="background-color: <?php echo $color ? esc_attr($color) : '#000' ?>"
                  data-name="<?= $tab_name; ?>">
 
@@ -27,7 +27,7 @@ if (have_rows('section_2')):
                         $i++;
                         setup_postdata($post); ?>
                         <a href="<?php the_permalink(); ?>"
-                           class="d-flex flex-column col-lg-3 col-6 justify-content-center align-items-center" aos-offset="50" data-aos="zoom-in"
+                           class="d-flex flex-column col-lg-3 col-md-4 col-6 justify-content-center align-items-center" aos-offset="50" data-aos="zoom-in"
                            data-aos-delay="<?= $i; ?>00">
                             <?php
                             $svg_icon = get_field('svg_icon');
@@ -52,8 +52,8 @@ if (have_rows('section_2')):
                 <?php if ($image){ ?>
                     <img class="img-fluid"
                          src="<?php echo esc_url($image['url']); ?>"
-                         alt="<?php echo esc_url($image['alt']); ?>"
-                         title="<?php echo esc_url($image['alt']); ?>"
+                         alt="<?php echo $image['alt']; ?>"
+                         title="<?php echo $image['alt']; ?>"
                     >
                 <?php }else{
                     echo 'No Data Selected';

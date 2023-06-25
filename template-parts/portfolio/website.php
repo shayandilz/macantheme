@@ -31,24 +31,24 @@ $website_url = get_field('website_url');
     <div class="d-lg-none min-vh-75">
         <ul class="nav nav-tabs border-0 justify-content-center nav-fill" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="button button-white active" id="home-tab" data-bs-toggle="tab"
+                <button class="button button-white active p-3" id="home-tab" data-bs-toggle="tab"
                         data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
                         aria-selected="true">
-                    <i class="bi bi-laptop fs-1"></i>
+                    <i class="bi bi-laptop fs-1 d-flex"></i>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="button button-white" id="contact-tab" data-bs-toggle="tab"
+                <button class="button button-white p-3" id="contact-tab" data-bs-toggle="tab"
                         data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
                         aria-selected="false">
-                    <i class="bi bi-tablet fs-1"></i>
+                    <i class="bi bi-tablet fs-1 d-flex"></i>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="button button-white" id="profile-tab" data-bs-toggle="tab"
+                <button class="button button-white p-3" id="profile-tab" data-bs-toggle="tab"
                         data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
                         aria-selected="false">
-                    <i class="bi bi-phone fs-1"></i>
+                    <i class="bi bi-phone fs-1 d-flex"></i>
                 </button>
             </li>
         </ul>
@@ -93,10 +93,13 @@ $website_url = get_field('website_url');
         </div>
 
     </div>
-    <div class="text-center my-lg-4">
-        <a class="MoreLink position-relative d-inline-block lazy fs-6"
+    <div class="text-center my-lg-4 d-flex justify-content-center">
+        <a class="MoreLink position-relative d-inline-flex justify-content-center align-items-center lazy fs-6 gap-2 "
            href="<?php echo esc_url($website_url['url']) ?>">
             <?= $website_url['title']; ?>
+            <h1 class="fs-6 text-white mb-0">
+                <?php the_title(); ?>
+            </h1>
         </a>
     </div>
 </div>

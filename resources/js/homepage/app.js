@@ -3,13 +3,7 @@ import 'swiper/css';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
-$(document).ready(function () {
-    // Handle category button click
-    $('.category-button').click(function () {
-        let categoryId = $(this).data('category-id');
-        window.location.href = 'blog/#' + categoryId;
-    });
-})
+
 
 function homeSwiper() {
     let names = [];
@@ -62,16 +56,20 @@ function homeSwiper() {
                     $('.navbar-brand').removeClass('aos-animate');
                     $('.backTo_Top').addClass('aos-animate')
                 }
-                slides.forEach(function (slide, index) {
-                    let elementsWithAos = slide.querySelectorAll('[data-aos]');
-                    elementsWithAos.forEach(function (element) {
-                        if (index === activeSlide) {
-                            element.classList.add('aos-animate');
-                        } else {
-                            element.classList.remove('aos-animate');
-                        }
+                setTimeout(function () {
+                    slides.forEach(function (slide, index) {
+                        let elementsWithAos = slide.querySelectorAll('[data-aos]');
+
+                        elementsWithAos.forEach(function (element) {
+                            if (index === activeSlide) {
+                                element.classList.add('aos-animate');
+                            } else {
+                                element.classList.remove('aos-animate');
+                            }
+
+                        })
                     });
-                });
+                }, 400);
             }
         }
     });

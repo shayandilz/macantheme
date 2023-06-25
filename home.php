@@ -5,7 +5,7 @@ get_header(); ?>
 
     <section class="container py-5 min-vh-100 ">
         <div class="row  mt-5">
-            <div class="col-lg-12 d-flex gap-4 flex-column align-items-center justify-content-stretch">
+            <div class="col-lg-12 d-flex gap-4 flex-column align-items-center justify-content-stretch aos-remover">
                 <!-- Add a search input field -->
                 <?php
                 //    <!--Search -->
@@ -23,7 +23,7 @@ get_header(); ?>
                 </div>
                 <!-- Add a load more button -->
                 <div class="my-3" data-aos="zoom-in" data-aos-delay="500">
-                    <button class="button-dark button fs-5" id="load-more">بیشتر</button>
+                    <button class="border-top border-bottom border-2 button-dark button fs-5" id="load-more">مشاهده بیشتر</button>
                 </div>
             </div>
         </div>

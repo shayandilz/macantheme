@@ -11,7 +11,7 @@ $next_post = get_adjacent_post(true, '', false, $taxonomy);
         $prev_link = get_permalink($previous_post->ID);
         if (has_term('', $taxonomy, $previous_post)) : ?>
             <a href="<?php echo esc_url($prev_link); ?>"
-               class="previous-post d-inline-flex text-end gap-3 align-items-center justify-content-center">
+               class="previous-post d-inline-flex text-end gap-1 align-items-center justify-content-center">
                 <i class="bi bi-chevron-right d-flex justify-content-center align-items-center"></i>
                 <h6 class="mb-0 lh-base pt-1 fade-in-navigation"><?php echo esc_html($prev_title); ?></h6>
             </a>
@@ -30,7 +30,7 @@ $next_post = get_adjacent_post(true, '', false, $taxonomy);
         $next_link = get_permalink($next_post->ID);
         if (has_term('', $taxonomy, $next_post)) : ?>
             <a href="<?php echo esc_url($next_link); ?>"
-               class="next-post d-inline-flex text-end gap-3 align-items-center justify-content-center">
+               class="next-post d-inline-flex text-end gap-1 align-items-center justify-content-center">
                 <h6 class="mb-0 lh-base pt-1 fade-in-navigation"><?php echo esc_html($next_title); ?></h6>
                 <i class="bi bi-chevron-left d-flex justify-content-center align-items-center"></i>
             </a>

@@ -11,19 +11,21 @@ function theme_scripts()
     //    <!-- Icons -->
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/public/fonts/bootstrap/bootstrap-icons.css');
     wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh/fontface.css', array());
+    wp_enqueue_style('font-en', get_template_directory_uri() . '/public/fonts/YekanBakh-en/fontface.css', array());
     wp_enqueue_style('social', get_template_directory_uri() . '/public/fonts/Macan-ic/fontface.css', array());
     if (is_singular('services')) {
         wp_enqueue_style('services', get_template_directory_uri() . '/public/fonts/services-icons/fontface.css', array());
     }
 // CSS files
     wp_enqueue_style('style', get_stylesheet_directory_uri() . '/public/css/style.css', array(),);
-    $url = $_SERVER["REQUEST_URI"];
 
+    $url = $_SERVER["REQUEST_URI"];
     $slugEN = strpos($url, 'en');
     if ($slugEN){
         wp_enqueue_style('ltr-style', get_stylesheet_directory_uri() . '/public/css/ltr.css', array(),);
-        wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh-en/fontface.css', array());
+
     }
+
 //    JS files
     wp_enqueue_script('main', get_template_directory_uri() . '/public/js/app.js', '1.0.0', true);
 
@@ -60,6 +62,13 @@ add_filter('big_image_size_threshold', '__return_false');
 add_theme_support('title-tag');
 add_theme_support('post-thumbnails');
 
+// Add custom thumbnail image size
+if (function_exists('add_image_size')) {
+    add_image_size('150-thumbnail', 150, 150, true);
+    add_image_size('300-thumbnail', 300, 300, true);
+    add_image_size('600-thumbnail', 600, 600, true);
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -90,7 +99,7 @@ add_action('after_setup_theme', 'theme_setup');
 /**
  * Custom template tags for this theme.
  */
-//require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/comments.php';
 
 add_action('acf/render_field_settings/type=image', 'add_default_value_to_image_field');
 function add_default_value_to_image_field($field)

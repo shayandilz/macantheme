@@ -3,7 +3,7 @@
     foreach ($category_detail as $term) {
         $category_url = get_category_link($term->term_id);
         ?>
-        <span data-category-id="<?= $term->term_id; ?>" class="d-inline-block position-absolute bg-dark bg-opacity-50 top-0 end-0 z-top p-2 small text-white category-button">
+        <span data-category-id="<?= $term->term_id; ?>"  class="d-inline-block position-absolute bg-dark bg-opacity-50 top-0 end-0 z-top p-2 small text-white category-button">
             <?= $term->name; ?>
 
         </span>
@@ -20,7 +20,7 @@
                 <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy">
                     <?php the_title(); ?>
                 </p>
-                <p class="excerpt position-absolute bottom-0 start-0 end-0 mb-4 fs-6 text-white lazy">
+                <p class="excerpt position-absolute bottom-0 start-0 end-0 mb-4 fs-6 text-white lazy px-3">
                     <?= wp_trim_words(get_the_content(), 10); ?>
                 </p>
             </div>

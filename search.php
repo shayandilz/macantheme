@@ -14,7 +14,8 @@ get_header();
             <h4 class="py-4 text-white">
                 <?php printf(esc_html__(' نتایج جستجو: %s ', 'macan'), get_search_query()); ?>
             </h4>
-            <?php if (have_posts()) : ?>
+            <?php if (have_posts()) {
+            ?>
             <?php
             /* Start the Loop */
             while (have_posts()) :
@@ -44,8 +45,8 @@ get_header();
                             echo $prev_posts_link;
                             echo '</li>';
                         endif;
-                        echo '<li class="page-item">';
-                        echo join('</li><li class="page-item">', $links);
+                        echo '<li class="page-item text-white">';
+                        echo join('</li><li class="page-item text-white">', $links);
                         echo '</li>';
 
                         // get_next_posts_link will return a string or void if no link is set.
@@ -60,8 +61,24 @@ get_header();
 
                 <?php endif;
                 wp_reset_postdata();
-                endif;
-                ?>
+                }else{ ?>
+                    <div class="row px-0 justify-content-center align-items-center min-vh-50">
+                        <div class="col-lg-8 d-flex flex-column justify-content-center text-center text-white">
+                            <h4>
+                                متاسفانه نتیجه مورد نظر شما یافت نشد !
+                            </h4>
+                            <p>
+                                از طریق باکس زیر آن را جست‌وجو کنید :
+                            </p>
+                            <form class="searchform w-100" role="search" method="get" action="https://macan.agency/">
+                                <label for="search" class="screen-reader-text">Search:</label>
+                                <input type="text" class="field searchform-s w-100 p-2" name="s" value="" placeholder="عبارت مورد نظرتان را تایپ و دکمه&zwnj;ی اینتر را فشار دهید ...">
+                                <input type="submit" class="assistive-text searchsubmit d-none" value="Go!">
+                                <a href="#go" class="submit"></a>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
             </div><!-- #main -->
     </section>
 

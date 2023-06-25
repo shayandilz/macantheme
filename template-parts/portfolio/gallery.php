@@ -11,7 +11,7 @@ if (get_field('image_columns') == 'col-12') {
 } elseif (get_field('image_columns') == 'col-md-6') {
     $col_class = 'col-6';
 } elseif(get_field('image_columns') == 'col-md-4') {
-    $col_class = 'col-md-4 col-6';
+    $col_class = 'col-md-4 col-12';
 }
 if (have_rows('gallery')): ?>
     <ul class="slides row justify-content-center list-unstyled g-1">
@@ -20,14 +20,16 @@ if (have_rows('gallery')): ?>
             $i++;
             $media_type = get_sub_field('media_type');
             $image = get_sub_field('image');
+            $thumb = wp_get_attachment_image_src( $image['ID'], '300-thumbnail' ); // 'thumbnail' can be replaced with any available image size in your theme
             $video = get_sub_field('video');
             $cover = get_sub_field('cover');
+            $thumb_cover = wp_get_attachment_image_src( $cover['ID'], '300-thumbnail' ); // 'thumbnail' can be replaced with any available image size in your theme
             if ($media_type == 'Image') { ?>
                 <li class="<?= $col_class; ?>">
                     <a href="#portfolioModal" data-slide="<?= $i ?>" class="play-btn"
                        data-bs-toggle="modal">
                         <div class="<?= $ratioClass; ?> ratio">
-                            <img class="object-fit" src="<?= $image['url'] ?>"
+                            <img class="object-fit" src="<?= esc_url( $thumb[0] ); ?>"
                                  alt="<?= $image['alt'] ?>">
                             <div class="position-absolute w-100 h-100 start-0 top-0 d-flex justify-content-center align-items-center lazy card-overlay fs-5">
                                 <i class="bi bi-eye-fill"></i>
@@ -45,7 +47,7 @@ if (have_rows('gallery')): ?>
                            data-bs-toggle="modal"
                            class="play-btn">
                             <div class="<?= $ratioClass; ?> ratio">
-                                <img class="object-fit" src="<?= $cover['url'] ?>"
+                                <img class="object-fit" src="<?= esc_url( $thumb_cover[0] ); ?>"
                                      alt="<?= $cover['alt'] ?>">
                                 <div class="position-absolute w-100 h-100 start-0 top-0 d-flex justify-content-center align-items-center lazy card-overlay fs-5">
                                     <i class="bi bi-play-fill"></i>

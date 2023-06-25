@@ -1,7 +1,7 @@
 <div class="bg-danger">
     <div class="custom-container">
         <div class="row gy-5 gy-lg-0 text-center text-lg-start py-lg-5 pb-3">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-6">
                 <h5 class="fw-semibold mb-2 text-white">خدمات</h5>
                 <?php
                 wp_nav_menu(array(
@@ -14,7 +14,7 @@
                 ));
                 ?>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-6">
                 <h5 class="fw-semibold mb-2 text-white">بلاگ</h5>
                 <?php
                 wp_nav_menu(array(
@@ -26,8 +26,21 @@
                     'depth' => 2,
                 ));
                 ?>
+                <div class="col-12 d-lg-none pt-5">
+                    <h5 class="fw-semibold mb-2 text-white">نمونه کار</h5>
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'footerLocationThree',
+                        'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light',
+                        'container' => false,
+                        'item_class' => 'nav-item',
+                        'link_class' => '',
+                        'depth' => 2,
+                    ));
+                    ?>
+                </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 d-none d-lg-block">
                 <h5 class="fw-semibold mb-2 text-white">نمونه کار</h5>
                 <?php
                 wp_nav_menu(array(

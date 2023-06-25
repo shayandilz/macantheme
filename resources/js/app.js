@@ -3,11 +3,100 @@ import Search from './global/search';
 import $ from "jquery";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
+
+
+
+$(document).ready(function () {
+    // Handle category button click
+    jQuery('.category-button').click(function () {
+        let categoryId = jQuery(this).data('category-id');
+        localStorage.setItem('categoryID', categoryId);
+
+        // Check if the current URL contains "/blog"
+        if (window.location.href.includes('/blog')) {
+            location.href = window.location.href; // Refresh the page
+        } else {
+            window.location.href = 'blog/';
+        }
+    });
+    setTimeout(function() {
+        localStorage.setItem('categoryID', '');
+    }, 2000);
+
+    jQuery('#portfolioModal .modal-dialog').click(function (e) {
+        if (jQuery(e.target).hasClass('modal-dialog')) {
+            jQuery(this).closest('.modal').modal('hide');
+        }
+    });
+
+    jQuery(function($) {
+        const macanisms = [
+            { element: '.M-Macanism', shape: '.M-shape', flower: '.M-Flower', description: '.M-Description' },
+            { element: '.A-Macanism', shape: '.A-shape', flower: '.A-Flower', description: '.A-Description' },
+            { element: '.K-Macanism', shape: '.K-shape', flower: '.K-Flower', description: '.K-Description' },
+            { element: '.AA-Macanism', shape: '.AA-shape', flower: '.AA-Flower', description: '.AA-Description' },
+            { element: '.N-Macanism', shape: '.N-shape', flower: '.N-Flower', description: '.N-Description' },
+            { element: '.I-Macanism', shape: '.I-shape', flower: '.I-Flower', description: '.I-Description' },
+            { element: '.S-Macanism', shape: '.S-shape', flower: '.S-Flower', description: '.S-Description' },
+            { element: '.MM-Macanism', shape: '.MM-shape', flower: '.MM-Flower', description: '.MM-Description' }
+        ];
+
+        macanisms.forEach(function(macanism) {
+            const { element, shape, flower, description } = macanism;
+
+            $(shape).add(flower).css('display', 'none');
+
+            $(element).mouseenter(function() {
+                $(shape).css('display', 'block').addClass(`${element.slice(1)}-flower-Animation`);
+                $(flower).css('display', 'block');
+                $(description).addClass('Macanism-Description-animate');
+            });
+
+            $(element).mouseleave(function() {
+                $(shape).css('display', 'none').removeClass(`${element.slice(1)}-flower-Animation`);
+                $(flower).css('display', 'none');
+                $(description).removeClass('Macanism-Description-animate');
+            });
+        });
+    });
+})
+
+class AOSDisabler {
+    constructor(className) {
+        this.elements = document.querySelectorAll('.' + className);
+        this.initialize();
+    }
+
+    initialize() {
+        if (this.isMobileScreenSize()) {
+            this.disableAOSOnMobile();
+        }
+    }
+
+    isMobileScreenSize() {
+        return window.matchMedia('(max-width: 767px)').matches;
+    }
+
+    disableAOSOnMobile() {
+        this.elements.forEach((element) => {
+            const elementsWithAOS = element.querySelectorAll('[data-aos]');
+
+            elementsWithAOS.forEach((aosElement) => {
+                aosElement.setAttribute('data-aos', 'none');
+            });
+        });
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
 
+
+
+    const aosDisabler = new AOSDisabler('aos-remover');
     /*---------------------     SEARCH in HEADER     ---------------------------*/
     const search = new Search();
 
@@ -27,8 +116,13 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleScrollClass();
     });
     // menu modal
+    let backBtn = $('<i>').addClass('bi bi-arrow-right-short back-button');
+    let liElement = $('<li>').append(backBtn);
+    $('#navbarTogglerMenu .sub-menu').append(liElement);
+
     const myModalEl = document.getElementById('headerModal');
     const menu_items = document.querySelectorAll('#navbarTogglerMenu > li');
+    let submenuItems = $('#navbarTogglerMenu .sub-menu li');
     const socialIcons = document.querySelectorAll('.social_icons > div')
 
     let i = 0;
@@ -49,9 +143,14 @@ document.addEventListener('DOMContentLoaded', function () {
             item.classList.remove('aos-animate');
         }, 20)
     });
-
+    $('.menu li:has(ul)').addClass('has-submenu z-top');
+    let subMenuTitle = $('.menu li.has-submenu > a');
     if (myModalEl) {
         myModalEl.addEventListener('shown.bs.modal', function (event) {
+            $('.sub-menu').addClass('submenu-open').fadeOut();
+            submenuItems.each(function () {
+                $(this).removeClass('aos-animate');
+            })
             setTimeout(function () {
                 menu_items.forEach((item) => {
                         item.classList.add('aos-animate');
@@ -62,40 +161,40 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 20); // Delay added before adding the 'aos-animate' class
         })
         myModalEl.addEventListener('hidden.bs.modal', function (event) {
+
+            if (!subMenuTitle.hasClass('aos-animate')) {
+                subMenuTitle.addClass('aos-animate')
+            }
             submenuItems.each(function () {
                 $(this).removeClass('aos-animate')
             })
-            $('.back-button').remove();
             menu_items.forEach((item) => {
                 item.classList.remove('aos-animate');
             });
             socialIcons.forEach((social) => {
                 social.classList.remove('aos-animate');
             })
-
         })
-
     }
     // menu animations
-    $('.menu li:has(ul)').addClass('has-submenu z-top');
-    let submenuItems = $('#navbarTogglerMenu .sub-menu li');
+
+
     let index = 0;
 
     submenuItems.each(function () {
         index++;
+        $(this).removeClass('aos-animate')
         $(this).attr('data-aos', 'fade-up')
         $(this).attr('data-aos-delay', index + '00')
-        $(this).removeClass('aos-animate')
+        subMenuTitle.attr('data-aos', 'fade-out')
+        subMenuTitle.attr('data-aos-delay', index + '00')
+
     })
-    $('.menu li.has-submenu > a').click(function (e) {
+    subMenuTitle.click(function (e) {
         e.preventDefault();
+        $(this).removeClass('aos-animate')
         let submenu = $(this).next('ul');
         let menuItems = $('.menu > ul > li').not($(this).closest('li')).not($(this).closest('.submenu').siblings());
-        if ($(this).parents('.submenu-open').length === 0 && submenu.find('.back-button').length === 0) {
-            // Add a back button only if the clicked item is not a child of an open submenu and if the submenu doesn't already have a back button
-            let backBtn = $('<i>').addClass('bi bi-arrow-right-short back-button');
-            submenu.append(backBtn);
-        }
         menuItems.each(function (index) {
             $(this).removeClass('aos-animate')
         });
@@ -107,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function closeButton() {
+        subMenuTitle.addClass('aos-animate')
         submenuItems.each(function () {
             $(this).removeClass('aos-animate')
         })
@@ -117,7 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
             menuItems.each(function (index) {
                 $(this).addClass('aos-animate')
             });
-            $(this).find('.back-button').remove();
+            // $(this).find('.back-button').remove();
+            // $('.menu li.has-submenu > a').fadeIn();
         });
 
     }
@@ -188,6 +289,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     AOS.init();
+    function initializeMasonry() {
+        var masonryGrids = document.querySelectorAll(".grid");
+
+        // Loop through all masonry grids and initialize Masonry
+        masonryGrids.forEach(function (masonryGrid) {
+            var masonryItems = masonryGrid.querySelectorAll(".grid-item");
+
+            var masonry = new Masonry(masonryGrid, {
+                itemSelector: ".grid-item",
+                columnWidth: ".grid-item",
+                percentPosition: true
+            });
+
+            // Initialize Masonry after images have loaded
+            imagesLoaded(masonryGrid).on("progress", function () {
+                masonry.layout();
+            });
+        });
+    }
+    // Event listener for Bootstrap tab shown event
+    document.addEventListener("shown.bs.tab", function(event) {
+        // Reinitialize Masonry when the tab is shown
+        initializeMasonry();
+    });
+
 });
+
+// // Show preloader when leaving the page
+// window.addEventListener('beforeunload', function(event) {
+//     $('#preloader-fa').fadeIn();
+//     let preloaderElements = document.querySelectorAll('#preloader-fa [data-aos]');
+//     setTimeout(function() {
+//         preloaderElements.forEach((element, index) => {
+//             setTimeout(function () {
+//                 element.classList.remove('aos-animate');
+//             }, index);
+//         });
+//     }, 200)
+// });
+
+// Hide preloader when entering the page
+$(document).ready(function() {
+    setTimeout(function () {
+        $('#preloader-fa').fadeOut('slow');
+    }, 2400);
+});
+
+
 
 

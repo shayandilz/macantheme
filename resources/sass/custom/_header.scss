@@ -1,38 +1,44 @@
 main {
   z-index: 2;
 }
+
 //sticky menu
-.scrolled .blog-menu{
-  padding: 0px!important;
-  box-shadow: 0 1px 2px 0 rgba(34,34,34,.149);
+.scrolled .blog-menu {
+  padding: 0px !important;
+  box-shadow: 0 1px 2px 0 rgba(34, 34, 34, .149);
   top: 0;
 }
-.single-post, .blog{
-  .position-custom{
+
+.single-post, .blog {
+  .position-custom {
     background-color: #74489d;
-    position: fixed!important;
-    left: 0!important;
-    right: 0!important;
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
   }
 }
 
-  //progress bar
+//progress bar
 .blog-progress {
   visibility: hidden;
   opacity: 0;
   @extend .lazy;
 }
-.blog-progress.show{
+
+.blog-progress.show {
   visibility: visible;
   opacity: 1;
 }
+
 .scrolled .blog-progress {
   top: 55px;
 }
+
 progress {
   height: 0.6rem;
-  background: #fbbb01;
+  background: #41af78;
 }
+
 progress {
   color: lightblue;
 }
@@ -42,19 +48,22 @@ progress::-moz-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background: #fbbb01;
+  background: #41af78;
 }
 
 progress::-webkit-progress-bar {
   background: $success;
 }
+
 //mobile menu
 @media only screen and (max-width: 992px) {
 
 }
-.modal-dialog{
-  pointer-events: auto!important;
+
+.modal-dialog {
+  pointer-events: auto !important;
 }
+
 //hamburger
 .menu-toggle {
   z-index: 1000;
@@ -165,16 +174,17 @@ progress::-webkit-progress-bar {
 
 .menu ul ul {
   display: none;
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
+  //position: absolute;
+  //top: 40px;
+  //left: 0;
+  //right: 0;
 
 }
 
 .hover-text:hover {
   color: #bbb;
 }
+
 .back-button {
   display: block;
   padding: 10px;
@@ -182,10 +192,12 @@ progress::-webkit-progress-bar {
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
-#navbarTogglerMenu .sub-menu{
-  font-size: 18px!important;
+
+#navbarTogglerMenu .sub-menu {
+  font-size: 18px !important;
   margin-top: 20px !important;
-  li{
+
+  li {
     @extend .my-0;
   }
 }
@@ -196,40 +208,46 @@ progress::-webkit-progress-bar {
   width: 40px;
   height: 40px;
   left: 15px;
-  bottom: 15px;
+  bottom: 60px;
   z-index: 10;
-  &:before{
+
+  &:before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: all 0.3s ease;  // Apply transition to background-color property
-    background-color: rgba(0, 0, 0, 0.5);   // Set initial background color
+    transition: all 0.3s ease; // Apply transition to background-color property
+    background-color: rgba(0, 0, 0, 0.5); // Set initial background color
 
   }
+
   &:hover:before {
-    background-color: rgba(0, 0, 0, 1);   // Change background color on hover
+    background-color: rgba(0, 0, 0, 1); // Change background color on hover
   }
 }
+
 //menu for single post
 #navbarMenu {
-  > li{
+  > li {
     color: #fff;
   }
+
   .menu-item-has-children {
     display: flex;
     align-items: center;
+
     &:after {
       content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
       line-height: 0;
       padding-left: 4px;
     }
+
     .sub-menu {
       text-align: left;
       width: max-content;
       opacity: 0;
       visibility: hidden;
-      transition:  all 0.3s linear;
+      transition: all 0.3s linear;
       position: absolute;
       top: 100%;
       list-style: none;
@@ -238,23 +256,27 @@ progress::-webkit-progress-bar {
       gap: 8px;
       background: #fff;
       height: unset;
-      color: #000!important;
+      color: #000 !important;
       border: 1px solid $danger;
-      li{
+
+      li {
         padding: 0px 10px;
         transition: all 0.3s linear;
       }
-      li:hover{
-        a{
+
+      li:hover {
+        a {
           color: white;
         }
+
         color: #fff;
         background-color: $danger;
       }
 
     }
+
     &:hover {
-      .sub-menu{
+      .sub-menu {
         opacity: 1;
         z-index: 1;
         height: auto;
@@ -263,27 +285,31 @@ progress::-webkit-progress-bar {
     }
   }
 }
+
 //social icons
 .social_icons {
-  .icon-Aparat:before , .icon-linkedin:before , .icon-instagram:before {
+  .icon-Aparat:before, .icon-linkedin:before, .icon-instagram:before {
     transition: color 0.3s linear;
   }
+
   a[title~="Aparat"]:hover {
     .icon-Aparat:before {
       color: #ed145b !important;
       -webkit-text-fill-color: #ed145b !important;
     }
   }
-a[title~="Linkedin"]:hover {
-  .icon-linkedin:before {
-    color: #0077b5 !important;
-    -webkit-text-fill-color: #0077b5 !important;
+
+  a[title~="Linkedin"]:hover {
+    .icon-linkedin:before {
+      color: #0077b5 !important;
+      -webkit-text-fill-color: #0077b5 !important;
+    }
   }
-}
- a[title~="Instagram"]:hover {
-   .icon-instagram:before {
-     color: #e7008a;
-     -webkit-text-fill-color: #e7008a !important;
-   }
- }
+
+  a[title~="Instagram"]:hover {
+    .icon-instagram:before {
+      color: #e7008a;
+      -webkit-text-fill-color: #e7008a !important;
+    }
+  }
 }

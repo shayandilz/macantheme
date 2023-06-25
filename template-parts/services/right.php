@@ -11,7 +11,7 @@
         ?>
     </div>
 </div>
-<div class="col-lg-6 row justify-content-center align-content-center mb-5 z-top">
+<div class="col-lg-6 row justify-content-center align-content-center mb-5 z-1 pt-4 pt-lg-0">
     <h1 class="text-center text-white fs-3"
         data-aos="fade-down"
         data-aos-delay="100">
