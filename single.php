@@ -74,9 +74,9 @@ while (have_posts()) :
                         <div class="content bg-white py-3 h-100 shadow-sm gx-0">
                             <?php the_content(); ?>
                             <div class="text-center border-top border-1 border-danger mt-5">
-                                <h5 class="mb-0 mt-4">
-                                    ارسال نظر
-                                </h5>
+<!--                                <h5 class="mb-0 mt-4">-->
+<!--                                    ارسال نظر-->
+<!--                                </h5>-->
                                 <?php
                                 if (comments_open() || get_comments_number()) :
                                     comments_template();

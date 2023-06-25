@@ -153,3 +153,20 @@ ul.pagination {
   }
   max-width: unset!important;
 }
+#commentform {
+  .col-md-6 , .col-12  {
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+  .form-floating {
+    padding: 0 5px!important;
+  }
+}
+.form-floating {
+  textarea {
+    min-height: 170px;
+  }
+  & > .form-control:focus ~ label:after {
+    background-color: transparent !important
+  }
+}

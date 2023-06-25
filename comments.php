@@ -20,14 +20,11 @@ if (post_password_required()) {
 }
 ?>
 
-<div class="my-4 wow animate__animated animate__fadeIn">
-
-
-    <div class="mb-4">
-        <p class="h2 normal-md-down fs-2 m-0">نظرات شما</p>
-    </div>
-
+<div class="my-4">
     <?php if (get_comments_number()) { ?>
+        <div class="mb-4">
+            <p class="h2 normal-md-down fs-2 m-0">نظرات شما</p>
+        </div>
         <p class="fs-6 text-muted mb-4">
             <?php comments_number('', 'یک دیدگاه ثبت شد.', '% دیدگاه ثبت شد.'); ?>
         </p>
