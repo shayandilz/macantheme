@@ -18,11 +18,11 @@ if (have_rows('section_5')):
                              title="<?php echo $image['alt']; ?>"
                              src="<?php echo esc_url($image['url']); ?>">
                     </div>
-                    <div class="col-lg-7 g-2 row flex-row-reverse justify-content-center align-content-center mb-5 z-top">
+                    <div class="col-lg-6 g-2 row flex-row-reverse justify-content-center align-content-center mb-5 z-top">
                         <h2 class="text-center text-white" data-aos="fade-down" data-aos-delay="100">
                             <?= $section_title; ?>
                         </h2>
-                        <div class="row g-2 justify-content-center">
+                        <div class="row g-4 justify-content-center">
                             <?php
                             $d = 0;
                             $args = array(
@@ -41,7 +41,7 @@ if (have_rows('section_5')):
                                         $client_image = get_field('img_class', get_the_ID(), 'clients');
                                         $client_attr = get_field('client_attr', get_the_ID(), 'clients');
                                         if (!empty($client_attr)): ?>
-                                            <img class="<?= $client_image; ?>" width="110" height="110"
+                                            <img class="<?= $client_image; ?>" width="100" height="100"
                                                  src="<?php echo $client_attr; ?>"
                                                  alt="<?php the_title(); ?>"/>
                                         <?php endif; ?>

@@ -12,7 +12,7 @@ if (have_rows('section_4')):
                  data-name="<?= $tab_name; ?>">
             <div class="container">
                 <div class="row px-0 mx-0 justify-content-between">
-                    <div class="col-lg-7 g-2 row flex-row-reverse justify-content-center align-content-center mb-5 z-top">
+                    <div class="col-lg-6 g-2 row flex-row-reverse justify-content-center align-content-center mb-5 z-top">
                         <h2 class="text-center text-white" data-aos="fade-down" data-aos-delay="100">
                             <?= $section_title; ?>
                         </h2>

@@ -17,7 +17,7 @@
         </div>
         <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end ">
             <div class="textBlog h-100 w-100 text-center lazy">
-                <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy">
+                <p class="title text-center text-white position-absolute bottom-0 start-0 end-0 lazy px-3">
                     <?php the_title(); ?>
                 </p>
                 <p class="excerpt position-absolute bottom-0 start-0 end-0 mb-4 fs-6 text-white lazy px-3">
