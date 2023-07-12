@@ -1,4 +1,4 @@
-<div class="vh-100 vw-100 position-fixed top-0 start-0 bg-white z-top" id="preloader-fa">
+<div class="vh-100 vw-100 position-fixed top-0 start-0 bg-white z-top" style="z-index: 10000000000;" id="preloader-fa">
     <div class="container h-100 w-100">
         <div class="row h-100 align-content-center justify-content-center">
             <svg class="px-0" style="width: 250px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149.08 37.65">

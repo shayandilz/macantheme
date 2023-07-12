@@ -7,6 +7,9 @@ $portfolio = array(
     'ignore_sticky_posts' => true
 );
 $loop_portfolio = new WP_Query($portfolio);
+
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 ?>
 
     <section class="py-5 container-fluid min-vh-100 aos-remover">
@@ -26,7 +29,7 @@ $loop_portfolio = new WP_Query($portfolio);
                 $term_ids[] = $cat->term_taxonomy_id;
             }
             // Add a new category object at the beginning for "Show All" option
-            array_unshift($cats, (object)array('name' => 'مشاهده همه', 'term_taxonomy_id' => $term_ids));
+            array_unshift($cats, (object)array('name' => $slugEN ? 'All' : 'مشاهده همه', 'term_taxonomy_id' => $term_ids));
             $s = 0;
             $i = 0;
             foreach ($cats as $key => $cat) { ?>
@@ -79,12 +82,12 @@ $loop_portfolio = new WP_Query($portfolio);
                             while ($loop->have_posts()) : $loop->the_post();
                                 $b++;
                                 $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
-                                if ($category_ids[0]->term_id == 18){ ?>
-                                    <div class="col-lg-4 col-md-6 col-12 grid-item">
+                                if ($category_ids[0]->term_id == ($slugEN ? 33 : 18)){ ?>
+                                    <div class="col-lg-4 col-md-6 col-12 grid-item mt-1">
                                         <?php get_template_part('template-parts/website-hover-card'); ?>
                                     </div>
                                 <?php }else{ ?>
-                                    <div class="col-lg-4 col-md-6 col-12 grid-item"">
+                                    <div class="col-lg-4 col-md-6 col-12 grid-item mt-1">
                                         <?php get_template_part('template-parts/hover-card'); ?>
                                     </div>
                                 <?php } ?>

@@ -181,10 +181,14 @@ progress::-webkit-progress-bar {
 
 }
 
-.hover-text:hover {
+.hover-text:hover,
+.current-menu-item {
   color: #bbb;
 }
-
+#menu-item-wpml-ls-19-en a,
+#menu-item-wpml-ls-19-fa a{
+  justify-content: center!important;
+}
 .back-button {
   display: block;
   padding: 10px;
@@ -285,6 +289,9 @@ progress::-webkit-progress-bar {
     }
   }
 }
+.header-en .menu-item-has-children:after {
+  padding-right: 4px!important;
+}
 
 //social icons
 .social_icons {
@@ -295,21 +302,18 @@ progress::-webkit-progress-bar {
   a[title~="Aparat"]:hover {
     .icon-Aparat:before {
       color: #ed145b !important;
-      -webkit-text-fill-color: #ed145b !important;
     }
   }
 
   a[title~="Linkedin"]:hover {
     .icon-linkedin:before {
       color: #0077b5 !important;
-      -webkit-text-fill-color: #0077b5 !important;
     }
   }
 
   a[title~="Instagram"]:hover {
     .icon-instagram:before {
       color: #e7008a;
-      -webkit-text-fill-color: #e7008a !important;
     }
   }
 }

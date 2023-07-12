@@ -1,4 +1,6 @@
 <?php
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 
 if (get_field('row_width') == 'col-lg-3') {
     $col_class = 'col-lg-3';
@@ -6,7 +8,7 @@ if (get_field('row_width') == 'col-lg-3') {
     $col_class = 'col-md-5';
 }
 ?>
-<div class="<?= $col_class; ?> py-5 text-center">
+<div class="<?= $col_class; ?> py-5 text-center <?php echo $slugEN ? 'lang-en' : ''; ?>">
     <?php
     get_template_part('template-parts/portfolio/gallery');
     ?>

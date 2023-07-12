@@ -5,6 +5,9 @@ if (have_rows('section_5')):
         $section_title = get_sub_field('section_title');
         $image = get_sub_field('background_image');
         $color = get_sub_field('background_color');
+
+        $url = $_SERVER["REQUEST_URI"];
+        $slugEN = strpos($url, 'en');
         ?>
         <section class="h-100 w-100 py-5 py-lg-0 overflow-hidden position-relative d-flex justify-content-center align-items-center mobile-section-bg aos-remover"
                  style="background-color: <?php echo esc_attr($color); ?>"
@@ -13,7 +16,7 @@ if (have_rows('section_5')):
                 <div class="row px-0 mx-0 justify-content-between">
                     <div class="col-lg-5">
                         <img data-aos="fade-up" data-aos-duration="3000" data-aos-disable
-                             class="position-absolute bottom-0 start-0 w-75 section5"
+                             class="position-absolute bottom-0 <?php echo $slugEN ? 'end-0' : 'start-0'; ?> w-75 section5"
                              alt="<?php echo $image['alt']; ?>"
                              title="<?php echo $image['alt']; ?>"
                              src="<?php echo esc_url($image['url']); ?>">

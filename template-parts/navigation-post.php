@@ -3,15 +3,18 @@ $taxonomy = 'portfolio_categories'; // change to your custom taxonomy name
 $term_id = get_queried_object_id();
 $previous_post = get_adjacent_post(true, '', true, $taxonomy);
 $next_post = get_adjacent_post(true, '', false, $taxonomy);
+
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 ?>
-<div class="position-absolute bottom-0 w-100 d-inline-flex <?php echo empty($previous_post) ? 'justify-content-end' : 'justify-content-between' ?>  pb-2 mb-4"  >
+<div class="position-absolute <?php echo $slugEN ? 'flex-row-reverse' : 'flex-row'; ?> bottom-0 w-100 d-inline-flex <?php echo empty($previous_post) ? 'justify-content-end' : 'justify-content-between' ?>  pb-2 mb-4"  >
     <?php
     if (!empty($previous_post)) :
         $prev_title = $previous_post->post_title;
         $prev_link = get_permalink($previous_post->ID);
         if (has_term('', $taxonomy, $previous_post)) : ?>
             <a href="<?php echo esc_url($prev_link); ?>"
-               class="previous-post d-inline-flex text-end gap-1 align-items-center justify-content-center">
+               class="previous-post d-inline-flex text-end gap-1 align-items-center justify-content-center <?php echo $slugEN ? 'flex-row-reverse' : 'flex-row'; ?>">
                 <i class="bi bi-chevron-right d-flex justify-content-center align-items-center"></i>
                 <h6 class="mb-0 lh-base pt-1 fade-in-navigation"><?php echo esc_html($prev_title); ?></h6>
             </a>
@@ -30,7 +33,7 @@ $next_post = get_adjacent_post(true, '', false, $taxonomy);
         $next_link = get_permalink($next_post->ID);
         if (has_term('', $taxonomy, $next_post)) : ?>
             <a href="<?php echo esc_url($next_link); ?>"
-               class="next-post d-inline-flex text-end gap-1 align-items-center justify-content-center">
+               class="next-post d-inline-flex text-end gap-1 align-items-center justify-content-center <?php echo $slugEN ? 'flex-row-reverse' : 'flex-row'; ?>">
                 <h6 class="mb-0 lh-base pt-1 fade-in-navigation"><?php echo esc_html($next_title); ?></h6>
                 <i class="bi bi-chevron-left d-flex justify-content-center align-items-center"></i>
             </a>

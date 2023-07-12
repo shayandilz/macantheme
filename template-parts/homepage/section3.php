@@ -7,13 +7,16 @@ if (have_rows('section_3')):
         $image = get_sub_field('background_image');
         $color = get_sub_field('background_color');
         $list_services = get_sub_field('select_portfolio');
+
+        $url = $_SERVER["REQUEST_URI"];
+        $slugEN = strpos($url, 'en');
         ?>
         <section  class="h-100 w-100 position-relative row py-5 py-lg-0 px-0 mx-0 justify-content-lg-between justify-content-center mobile-section-bg overflow-hidden aos-remover"
                  style="background-color: <?php echo esc_attr($color); ?>"
                  data-name="<?= $tab_name; ?>">
             <div class="col-lg-5">
-                <img data-aos="fade-up-left" data-aos-duration="3000" data-aos-disable
-                     class="position-absolute bottom-0 start-0 w-75 section3"
+                <img data-aos="<?php echo $slugEN ? 'fade-up-right' : 'fade-up-left'; ?>" data-aos-duration="3000" data-aos-disable
+                     class="position-absolute bottom-0 <?php echo $slugEN ? 'end-0' : 'start-0'; ?> w-75 section3"
                      src="<?php echo esc_url($image['url']); ?>"
                      alt="<?php echo $image['alt']; ?>"
                      title="<?php echo $image['alt']; ?>"
@@ -97,7 +100,7 @@ if (have_rows('section_3')):
                                 if ($loopPortfolio->have_posts()) {
                                     while ($loopPortfolio->have_posts()) : $loopPortfolio->the_post(); $b++;
                                         $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
-                                        if ($category_ids[0]->term_id == 18){ ?>
+                                        if ($category_ids[0]->term_id == ($slugEN ? 33 : 18)){ ?>
                                             <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
                                                  data-aos-delay="<?= $b; ?>00">
                                                 <?php get_template_part('template-parts/home-website-hover-card'); ?>

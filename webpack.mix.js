@@ -22,8 +22,8 @@ mix.js('resources/js/single-portfolio/app.js', 'public/js/single-portfolio/app.j
 mix.sass('resources/sass/ltr.scss', 'public/css')
 mix.sass('resources/sass/custom.scss', 'public/css/style.css', {}, [
     require("rtlcss")({}),
-]).options({
-    processCssUrls: true});
+]).sourceMaps().options({
+    processCssUrls: true}); // Add this line to enable source maps;
 
 mix.webpackConfig({
     stats: {

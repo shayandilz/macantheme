@@ -1,12 +1,16 @@
 <?php get_header();
 
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, '/en/') !== false;
+
+
 while (have_posts()) :
     the_post();
     ?>
     <div class="position-fixed blog-progress w-100 z-1">
         <progress class="w-100 lazy" max="100" value="0"></progress>
     </div>
-    <section class="min-vh-100">
+    <section class="min-vh-100 <?php echo $slugEN ? 'lang-en' : ''; ?>">
         <div class="bg-danger" style="padding-top: 120px">
             <div class="custom-container d-flex flex-column justify-content-center align-items-start">
                 <?php
@@ -34,7 +38,7 @@ while (have_posts()) :
                             <?php echo get_the_date('d  F , Y'); ?>
                             <div class="vr bg-white opacity-100"></div>
                             <span class="text-semi-light fs-6">
-                        مدت زمان مطالعه               <?= reading_time(); ?> دقیقه
+                                <?php echo $slugEN ? 'Reading Time : ' .  reading_time() . ' mins' : 'مدت زمان مطالعه' . reading_time() . 'دقیقه'; ?>
                             </span>
                         </div>
                     </div>
@@ -61,9 +65,12 @@ while (have_posts()) :
             <div class="custom-container min-vh-100 position-relative">
                 <div class="row g-4 py-4 align-items-lg-start">
                     <div class="col-lg-3 col-12">
-                        <div class="sidebar-area shadow-sm">
-                            <div class="bg-white px-4 shadow-sm">
-                                <h3 class="py-3 text-dark">فهرست</h3>
+                        <div class="sidebar-area shadow-sm bg-white <?php echo $slugEN ? '' : 'ps-4'; ?>">
+                            <h3 class="pt-3 pb-0 mb-0 text-dark <?php echo $slugEN ? 'text-center' : 'text-start'; ?>">
+                                <?php echo $slugEN ? 'Table of Content' : 'فهرست'; ?>
+                            </h3>
+                            <div class="<?php echo $slugEN ? 'px-5' : 'px-4'; ?>">
+
                                 <div class="d-flex align-items-center">
                                     <?php echo do_shortcode('[TOC]') ?>
                                 </div>
@@ -71,9 +78,9 @@ while (have_posts()) :
                         </div>
                     </div>
                     <article class="col-lg-9 col-12 text-justify text-dark lh-lg sidebar-container">
-                        <div class="content bg-white py-3 h-100 shadow-sm gx-0">
+                        <div class="content bg-white py-3 h-100 shadow-sm gx-0 <?php echo $slugEN ? 'pe-4' : 'pe-0'; ?>">
                             <?php the_content(); ?>
-                            <div class="text-center border-top border-1 border-danger mt-5">
+                            <div class="text-center border-top border-1 border-danger mt-5 <?php echo $slugEN ? 'd-none' : ''; ?>">
 <!--                                <h5 class="mb-0 mt-4">-->
 <!--                                    ارسال نظر-->
 <!--                                </h5>-->
@@ -94,7 +101,7 @@ while (have_posts()) :
             <div class="custom-container">
                 <div class="row justify-content-center align-items-stretch">
                     <div class="col-12 py-5">
-                        <h6 class="pb-lg-5 pb-2 text-dark text-center fs-3 fw-bolder">مطالب مرتبط</h6>
+                        <h6 class="pb-lg-5 pb-2 text-dark text-center fs-3 fw-bolder"><?php echo $slugEN ? 'Related Posts' : 'مطالب مرتبط'; ?></h6>
                         <div class="row row-gap-4 gap-lg-0 pb-5 pb-lg-0">
                             <?php
                             // Get the current post ID

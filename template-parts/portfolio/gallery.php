@@ -7,7 +7,7 @@ if (get_field('image_size') == 'ratio1x1') {
 }
 //column numbers
 if (get_field('image_columns') == 'col-12') {
-    $col_class = 'col-lg-12 col-6';
+    $col_class = 'col-12';
 } elseif (get_field('image_columns') == 'col-md-6') {
     $col_class = 'col-6';
 } elseif(get_field('image_columns') == 'col-md-4') {

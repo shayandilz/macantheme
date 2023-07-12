@@ -8,14 +8,29 @@
   .social_border{
     border-right: 1px solid #fff;
   }
+  .lang-en .social-border{
+    border-left: 1px solid #fff;
+    border-right: none!important;
+  }
   #headerModal {
     .modal-dialog {
       width: fit-content;
       min-width: 200px;
     }
   }
+  .custom-border {
+    border-left: 1px solid #fff;
+  }
+  .lang-en .custom-border{
+    border-left: none!important;
+    border-right: 1px solid #fff;
+  }
+
 }
 @include media-breakpoint-down(lg) {
+  ul .wpml-ls-menu-item a{
+    justify-content: center!important;
+  }
   .textBlog{
     p{
       font-size: 14px!important;

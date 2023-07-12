@@ -26,7 +26,7 @@
 // rev slider & formidable
 #rev_slider_1_1_wrapper *,
 #rev_slider_19_1_wrapper * {
-  font-family: Yekan !important;
+  font-family: 'Yekan-en', 'Yekan'!important;
 }
 .single-services rs-slide h1,
 .single-services rs-slide h2{
@@ -34,7 +34,7 @@
 }
 
 #frm_form_3_container * {
-  font-family: Yekan !important;
+  font-family: 'Yekan-en', 'Yekan'!important;
   direction: ltr !important;
 }
 
@@ -370,7 +370,9 @@
   padding: 0 0px 0 90px;
   outline: none;
 }
-
+.lang-en #search-input {
+  padding: 0 90px 0 0px!important;
+}
 #search-input::-webkit-input-placeholder {
   color: $danger;
   font-size: 12px;
@@ -706,4 +708,23 @@ $primary-color: #693a9d;
   .dz-message {
     background: transparent!important;
   }
+}
+
+//slider aboutus
+#rev_slider_19_1 ul {
+  list-style: square;
+}
+#rev_slider_19_1 p {
+  text-align: justify!important;
+  line-height:1.8!important;
+  font-size: 18px !important;
+}
+#rev_slider_19_1 *{
+  pointer-events: all !important;
+}
+#rev_slider_19_1 .accordion-button::after {
+  filter: invert(1)!important;
+}
+#rev_slider_19_1 .accordion-button:focus {
+  box-shadow: unset !important
 }

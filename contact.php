@@ -1,13 +1,15 @@
 <?php /* Template Name: Contact */
+
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, '/en/') !== false;
 get_header();
 ?>
-
-    <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden">
+<?php $thumbnail_url = get_the_post_thumbnail_url(); ?>
+    <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden <?php echo $slugEN ? 'lang-en' : ''; ?>" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>'); background-position: right;background-repeat: no-repeat;background-size: cover;">
         <div class="container">
-           <?php $thumbnail_url = get_the_post_thumbnail_url(); ?>
-            <div class="row px-0 min-vh-100 justify-content-lg-end justify-content-center align-items-center"
-            style="background-image: url('<?php echo esc_url($thumbnail_url); ?>'); background-position: right;background-repeat: no-repeat;">
-                <div class="col-lg-6 d-flex flex-column align-items-center align-items-lg-start justify-content-center justify-content-lg-start gap-4 border-start border-1 border-white py-3 px-3 z-top">
+            <div class="row px-0 min-vh-100 <?php echo $slugEN ? 'justify-content-lg-start ' : 'justify-content-lg-end '; ?> justify-content-center align-items-center"
+            >
+                <div class="col-lg-6 d-flex flex-column align-items-center align-items-lg-start justify-content-center justify-content-lg-start gap-4 custom-border py-3 px-3 z-top">
                     <?php if (have_rows('address', 'option')): ?>
                         <?php while (have_rows('address', 'option')): the_row();
                             $addressText = get_sub_field('text');

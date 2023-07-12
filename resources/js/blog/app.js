@@ -119,10 +119,14 @@ class Blog {
                 // Clear the search and display all posts
                 await this.loadLatestPosts();
             }
-            if (postsToRender.length === 0) {
-                const noPostsHtml = '<div class="d-flex justify-content-center align-items-center mt-5 text-white"><h3>هیچ پستی یافت نشد.</h3></div>';
+            if (postsToRender.length === 0 && !window.location.href.includes('/en')) {
+                const noPostsHtml = '<div class="d-flex justify-content-center align-items-center mt-5 text-dark"><h3>هیچ پستی یافت نشد.</h3></div>';
                 this.searchResults.append(noPostsHtml);
-            } else {
+            }else if (postsToRender.length === 0 && window.location.href.includes('/en')){
+                const noPostsHtml = '<div class="d-flex justify-content-center align-items-center mt-5 text-dark"><h3>Nothing Found.</h3></div>';
+                this.searchResults.append(noPostsHtml);
+            }
+            else {
                 await this.displayPosts(postsToRender);
             }
             this.loadingSpinner.hide(); // Hide the spinner after the request is completed
@@ -240,10 +244,11 @@ class Blog {
 
         if (this.categories.length > 0) {
             const categoryId = parseInt(localStorage.getItem('categoryID'));
-
+            console.log(categoryId)
             // Render all the category buttons except "Uncategorized"
+            const excludedIds = [1, 23]; // Add more IDs to exclude if needed
             const categoryButtons = this.categories
-                .filter(category => category.id !== 1)
+                .filter(category => !excludedIds.includes(category.id))
                 .map(category => {
                     const button = $('<button>').text(category.name).addClass('button-dark button p-1 px-lg-4');
                     button.click(() => {
@@ -257,7 +262,7 @@ class Blog {
                 });
 
             // Render the "Uncategorized" button
-            const uncategorizedButton = this.categories.find(category => category.id === 1);
+            const uncategorizedButton = this.categories.find(category => category.id === 1 || category.id === 23);
             if (uncategorizedButton) {
                 const button = $('<button>').text(uncategorizedButton.name).addClass('button-dark button p-1 px-lg-4');
                 button.click(() => {
@@ -272,7 +277,13 @@ class Blog {
             }
 
             // Render the "All" button
-            const allButton = $('<button>').text('مشاهده همه').addClass('button-dark button active p-1 px-lg-4');
+
+            const allButton = $('<button>').addClass('button-dark button active p-1 px-lg-4');
+            if (window.location.href.includes('/en')) {
+                allButton.text('All');
+            } else {
+                allButton.text('مشاهده همه');
+            }
             allButton.click(() => {
                 container.find('button').removeClass('active');
                 allButton.addClass('active');

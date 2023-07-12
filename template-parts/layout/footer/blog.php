@@ -1,12 +1,17 @@
+<?php
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, '/en/') !== false;
+?>
+
 <div class="bg-danger">
     <div class="custom-container">
-        <div class="row gy-5 gy-lg-0 text-center text-lg-start py-lg-5 pb-3">
+        <div class="row gy-5 gy-lg-0 text-center <?php echo $slugEN ? ' text-lg-end' : 'text-lg-start'; ?> py-lg-5 pb-3">
             <div class="col-lg-3 col-6">
-                <h5 class="fw-semibold mb-2 text-white">خدمات</h5>
+                <h5 class="fw-semibold mb-2 text-white"><?php echo $slugEN ? 'Services' : 'خدمات'; ?></h5>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'footerLocationOne',
-                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light',
+                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light' . ($slugEN ? ' text-lg-end' : 'text-lg-start'),
                     'container' => false,
                     'item_class' => 'nav-item',
                     'link_class' => '',
@@ -15,11 +20,11 @@
                 ?>
             </div>
             <div class="col-lg-3 col-6">
-                <h5 class="fw-semibold mb-2 text-white">بلاگ</h5>
+                <h5 class="fw-semibold mb-2 text-white"><?php echo $slugEN ? 'Blog' : 'بلاگ'; ?></h5>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'footerLocationTwo',
-                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light',
+                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center fs-6 fw-light ' . ($slugEN ? ' text-lg-end' : 'text-lg-start'),
                     'container' => false,
                     'item_class' => 'nav-item',
                     'link_class' => '',
@@ -27,11 +32,11 @@
                 ));
                 ?>
                 <div class="col-12 d-lg-none pt-5">
-                    <h5 class="fw-semibold mb-2 text-white">نمونه کار</h5>
+                    <h5 class="fw-semibold mb-2 text-white"><?php echo $slugEN ? 'Portfolio' : 'نمونه کار'; ?></h5>
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'footerLocationThree',
-                        'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light',
+                        'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center fs-6 fw-light ' . ($slugEN ? ' text-lg-end' : 'text-lg-start'),
                         'container' => false,
                         'item_class' => 'nav-item',
                         'link_class' => '',
@@ -41,11 +46,11 @@
                 </div>
             </div>
             <div class="col-lg-3 d-none d-lg-block">
-                <h5 class="fw-semibold mb-2 text-white">نمونه کار</h5>
+                <h5 class="fw-semibold mb-2 text-white"><?php echo $slugEN ? 'Portfolio' : 'نمونه کار'; ?></h5>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'footerLocationThree',
-                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center text-lg-start fs-6 fw-light',
+                    'menu_class' => 'navbar-nav gap-3 pe-0 text-white list-unstyled text-center fs-6 fw-light ' . ($slugEN ? ' text-lg-end' : 'text-lg-start'),
                     'container' => false,
                     'item_class' => 'nav-item',
                     'link_class' => '',
@@ -54,7 +59,7 @@
                 ?>
             </div>
             <div class="col-lg-3 d-flex flex-column align-items-lg-start align-items-center gap-3">
-                <h5 class="fw-semibold mb-0 text-white">آدرس</h5>
+                <h5 class="fw-semibold mb-0 text-white"><?php echo $slugEN ? 'Address' : 'آدرس'; ?></h5>
                 <div class="d-flex flex-column gap-3">
                     <?php if (have_rows('address', 'option')): ?>
                         <?php while (have_rows('address', 'option')): the_row();

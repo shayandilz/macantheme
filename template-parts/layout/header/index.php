@@ -76,8 +76,7 @@
 
 <button class="bg-transparent border-0 btn top-0 end-0 pt-3 pe-3 <?= is_singular('post') ? 'position-fixed' : 'position-absolute'; ?> "
         type="button"
-        aria-labelledby="search"
-        aria-label="search"
+        aria-labelledby="search-form"
         data-bs-toggle="modal"
         data-bs-target="#searchModal"
         aria-controls="modal"

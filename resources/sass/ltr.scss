@@ -1,6 +1,10 @@
 .swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical>.swiper-pagination-bullets {
   left: 10px!important;
+  right: unset!important;
 }
 .tooltip .tooltiptext{
   left: -100%!important;;
+}
+#rev_slider_19_1_wrapper *{
+  text-align: left!important;
 }

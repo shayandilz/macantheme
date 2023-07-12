@@ -63,7 +63,7 @@ class Search {
         $.getJSON(jsData.root_url + '/wp-json/search/v1/search?term=' + this.searchField.val(), (results) => {
             this.resultsDiv.html(`
                 <div class="pt-3">
-                        <h5  class="my-3 text-white text-center ">مقالات</h5>
+                        <h5  class="my-3 text-white text-center ">${window.location.href.includes('/en') ? 'Blog' : 'مقالات'}</h5>
                         ${results.post.length ? '<div class="row g-2">' : '<p class="p-2 m-0 border-top">هیچ مقاله ای یافت نشد</p>'}
                         ${results.post.map((item, index) =>
                 `<div class="col-lg-4 col-md-6">

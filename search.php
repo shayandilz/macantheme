@@ -7,12 +7,15 @@
  * @package baloochy
  */
 get_header();
+
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 ?>
 
     <section class="container py-5 min-vh-100">
         <div class="row g-2">
             <h4 class="py-4 text-white">
-                <?php printf(esc_html__(' نتایج جستجو: %s ', 'macan'), get_search_query()); ?>
+                <?php printf(esc_html__($slugEN ? 'Search Result for %s :' : ' نتایج جستجو: %s ', 'macan'), get_search_query()); ?>
             </h4>
             <?php if (have_posts()) {
             ?>
@@ -40,7 +43,7 @@ get_header();
                     <nav aria-label="age navigation example text-dark">
                         <?php echo '<ul class="pagination gap-3 justify-content-center align-items-center flex-row-reverse mb-0">';
                         // get_previous_posts_link will return a string or void if no link is set.
-                        if ($prev_posts_link = get_previous_posts_link(__('قبلی'))) :
+                        if ($prev_posts_link = get_previous_posts_link(__($slugEN ? 'Previous' : 'قبلی'))) :
                             echo '<li class="prev-list-item page-item">';
                             echo $prev_posts_link;
                             echo '</li>';
@@ -50,7 +53,7 @@ get_header();
                         echo '</li>';
 
                         // get_next_posts_link will return a string or void if no link is set.
-                        if ($next_posts_link = get_next_posts_link(__('بعدی'))) :
+                        if ($next_posts_link = get_next_posts_link(__($slugEN ? 'Next' : 'بعدی'))) :
                             echo '<li class="next-list-item page-item">';
                             echo $next_posts_link;
                             echo '</li>';
@@ -65,14 +68,19 @@ get_header();
                     <div class="row px-0 justify-content-center align-items-center min-vh-50">
                         <div class="col-lg-8 d-flex flex-column justify-content-center text-center text-white">
                             <h4>
-                                متاسفانه نتیجه مورد نظر شما یافت نشد !
+                                <?php echo $slugEN ? 'No Results' : 'متاسفانه نتیجه مورد نظر شما یافت نشد !'; ?>
                             </h4>
                             <p>
-                                از طریق باکس زیر آن را جست‌وجو کنید :
+                                <?php echo $slugEN ? 'Use Search Field Below' : 'از طریق باکس زیر آن را جست‌وجو کنید :'; ?>
+
                             </p>
                             <form class="searchform w-100" role="search" method="get" action="https://macan.agency/">
                                 <label for="search" class="screen-reader-text">Search:</label>
-                                <input type="text" class="field searchform-s w-100 p-2" name="s" value="" placeholder="عبارت مورد نظرتان را تایپ و دکمه&zwnj;ی اینتر را فشار دهید ...">
+                                <input type="text"
+                                       class="field searchform-s w-100 p-2"
+                                       name="s"
+                                       value=""
+                                       placeholder="<?php echo $slugEN ? 'Type in ...' : 'عبارت مورد نظرتان را تایپ و دکمه&zwnj;ی اینتر را فشار دهید ...'; ?>">
                                 <input type="submit" class="assistive-text searchsubmit d-none" value="Go!">
                                 <a href="#go" class="submit"></a>
                             </form>

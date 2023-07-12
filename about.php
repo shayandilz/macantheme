@@ -1,5 +1,7 @@
 <?php /* Template Name: About */
 get_header();
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 ?>
 
     <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden">
@@ -25,7 +27,7 @@ get_header();
                         if ($current_row !== $total_rows) { ?>
                             <div style="background-color: <?= $color ?>"
                                  class="pt-5 container-fluid d-flex justify-content-center flex-column">
-                                <div class="text-start text-white pt-5 lh-lg">
+                                <div class="<?php echo $slugEN ? 'text-end' : 'text-start'; ?> text-white pt-5 lh-lg">
                                     <?= $text ?>
                                 </div>
                                 <img class="img-fluid" src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
@@ -33,9 +35,9 @@ get_header();
                         <?php } else { ?>
                             <div style="background-color: <?= $color ?>"
                                  class="pt-5 container-fluid d-flex justify-content-center flex-column">
-                                <h6 class="text-start mb-4 text-white">ارزش‌ها به سبک ماکان</h6>
+                                <h6 class="<?php echo $slugEN ? 'text-end' : 'text-start'; ?> mb-4 text-white"><?php echo $slugEN ? "MACAN'S Values" : 'ارزش‌ها به سبک ماکان'; ?></h6>
                                 <img class="img-fluid" src="<?= $image['url']; ?>" alt="<?= $image['alt']; ?>">
-                                <div class="text-start text-white pt-5 lh-lg">
+                                <div class="<?php echo $slugEN ? 'text-end' : 'text-start'; ?> text-white pt-5 lh-lg">
                                     <?= $text ?>
                                 </div>
 

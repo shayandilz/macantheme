@@ -42,18 +42,29 @@ function theme_scripts()
         wp_enqueue_script('portfolio', get_template_directory_uri() . '/public/js/single-portfolio/app.js', '1.0.0', true);
     }
 
+    $url = $_SERVER["REQUEST_URI"];
+    $slugEN = strpos($url, 'en');
 //  passing php values to javascript
     wp_localize_script('main', 'jsData', array(
-        'root_url' => get_site_url(),
+        'root_url' => $slugEN !== false ? site_url('/en') : get_site_url(),
         'nonce' => wp_create_nonce('my-nonce')
     ));
     wp_localize_script('blog', 'jsData', array(
-        'root_url' => get_site_url(),
-        'nonce' => wp_create_nonce('my-nonce')
+        'root_url' => $slugEN !== false ? site_url('/en') : get_site_url(),
+        'nonce' => wp_create_nonce('my-nonce'),
     ));
 
 
 }
+
+function add_custom_honeypot_field() {
+    if ( ! empty( $_POST['honeypot'] ) ) {
+        // Honeypot field is filled, treat as spam
+        exit;
+    }
+}
+add_action( 'pre_comment_on_post', 'add_custom_honeypot_field' );
+
 
 add_action('wp_enqueue_scripts', 'theme_scripts');
 

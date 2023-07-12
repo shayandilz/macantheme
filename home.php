@@ -1,9 +1,10 @@
 <?php
 /** Template Name: Blog Page */
-
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 get_header(); ?>
 
-    <section class="container py-5 min-vh-100 ">
+    <section class="container py-5 min-vh-100 <?php echo $slugEN ? 'lang-en' : ''; ?>">
         <div class="row  mt-5">
             <div class="col-lg-12 d-flex gap-4 flex-column align-items-center justify-content-stretch aos-remover">
                 <!-- Add a search input field -->
@@ -14,7 +15,7 @@ get_header(); ?>
                 <ul class="nav-fill nav mt-5 mb-3" id="category-filter"></ul>
                 <!-- Add a div to display search results -->
                 <div class="position-relative w-100 min-vh-50">
-                    <div id="search-results" class="row w-100 g-2 mx-0 min-vh-75"></div>
+                    <div id="search-results" class="row w-100 g-2 mx-0"></div>
                     <div id="loading-spinner" class="position-absolute w-100 h-100 top-0 end-0 justify-content-center align-items-center">
                         <div  class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
@@ -23,7 +24,7 @@ get_header(); ?>
                 </div>
                 <!-- Add a load more button -->
                 <div class="my-3" data-aos="zoom-in" data-aos-delay="500">
-                    <button class="border-top border-bottom border-2 button-dark button fs-5" id="load-more">مشاهده بیشتر</button>
+                    <button class="border-top border-bottom button-dark button fs-5" id="load-more"><?php echo $slugEN ? 'Load More' : 'مشاهده بیشتر'; ?></button>
                 </div>
             </div>
         </div>

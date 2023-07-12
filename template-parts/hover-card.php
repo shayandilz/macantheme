@@ -1,9 +1,11 @@
 <?php
+$url = $_SERVER["REQUEST_URI"];
+$slugEN = strpos($url, 'en');
 $category_detail = get_the_terms(get_the_ID(), 'portfolio_categories');
 
 if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio') ){
     $ratio = 'ratio-1x1 ratio';
-}elseif ($category_detail[0]->term_id == 17 && is_post_type_archive('portfolio') ){
+}elseif ($category_detail[0]->term_id == ($slugEN ? 31 : 17) && is_post_type_archive('portfolio') ){
     $ratio = 'ratio-1x1 ratio';
 }else{
     $ratio = 'ratio-16x9 ratio';
