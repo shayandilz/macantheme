@@ -1,0 +1,211 @@
+.landing {
+  .col-lg-6 {
+    margin-top: 70px !important;
+  }
+
+  form {
+    direction: ltr !important;
+
+    fieldset {
+      border: none;
+    }
+
+    legend {
+      font-size: 0;
+    }
+
+    input {
+      width: 4rem;
+      height: 4rem;
+      font-size: 3rem;
+      text-align: center;
+      animation: pulsate 1.5s infinite alternate;
+      border: 0.2rem solid #fff;
+      border-radius: 10px;
+    }
+  }
+  .counterUp{
+    direction: ltr!important;
+    position: relative;
+    margin: 50px;
+    width: 400px;
+    height: 100px;
+    background: transparent;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    z-index: 10;
+  }
+  .counterUp::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 383px;
+    height: 80px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 0px 20px rgb(7 100 211);
+    background-image: linear-gradient(
+                    45deg,
+                    #840505 11.36%,
+                    #840505 11.36%,
+                    #840505 12.5%,
+                    #920606 12.5%,
+                    #920606 23.86%,
+                    #920606 23.86%,
+                    #920606 25%,
+                    #840505 25%,
+                    #840505 36.36%,
+                    #840505 36.36%,
+                    #840505 37.5%,
+                    #920606 37.5%,
+                    #920606 48.86%,
+                    #920606 48.86%,
+                    #920606 50%,
+                    #840505 50%,
+                    #840505 61.36%,
+                    #840505 61.36%,
+                    #840505 62.5%,
+                    #920606 62.5%,
+                    #920606 73.86%,
+                    #920606 73.86%,
+                    #920606 75%,
+                    #840505 75%,
+                    #840505 86.36%,
+                    #840505 86.36%,
+                    #840505 87.5%,
+                    #920606 87.5%,
+                    #920606 98.86%,
+                    #920606 98.86%,
+                    #920606 100%
+    );
+    background-size: 200px 200px;
+    animation: barberpole 10s alternate forwards infinite ease-in-out;
+    z-index: -1;
+  }
+
+  @keyframes barberpole {
+    100% {
+      background-position: 50% 50%;
+    }
+  }
+
+
+  button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #F8493F;
+    width: 150%;
+    padding-top: 150%;
+    transition: 0.25s ease;
+  }
+
+}
+
+button.swipe-overlay-out{
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+button.swipe-overlay-out::after{
+  transform: rotate(25deg);
+  top: -200%;
+  left: -190%;
+
+}
+button.swipe-overlay-out::after {
+  transition: 0.5s ease;
+}
+button.swipe-overlay-out:hover {
+  color: #F8493F
+}
+button.swipe-overlay-out:hover:after {
+  left: 130%;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+
+
+  input {
+    width: 4rem;
+    height: 4rem;
+    font-size: 3rem;
+  }
+
+  input + input {
+    margin-left: 1rem;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+//animation
+.element {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.dot-container {
+  position: absolute;
+  width: calc(100% - 12px);
+  height: calc(100% - 0px);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+  box-shadow: rgba(255, 255, 255, 0.8) 0 -1px 7px 1px, inset #ffffff 0 -1px 9px, rgba(255, 255, 255, 0.5) 0 2px 12px
+}
+
+@keyframes blinkEven {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: rgba(255, 255, 255, 0.8) 0 -1px 13px 5px, inset #fff 0 -1px 23px, rgba(255, 255, 255, 0.5) 0 2px 0;
+  }
+}
+
+@keyframes blinkOdd {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    box-shadow: rgba(255, 255, 255, 0.8) 0 -1px 13px 5px, inset #fff 0 -1px 23px, rgba(255, 255, 255, 0.5) 0 2px 0;
+  }
+}
+.odometer-numbers > span{
+  width: 32px!important;
+}
+
+

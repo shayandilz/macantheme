@@ -13,6 +13,7 @@ function theme_scripts()
     wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh/fontface.css', array());
     wp_enqueue_style('font-en', get_template_directory_uri() . '/public/fonts/YekanBakh-en/fontface.css', array());
     wp_enqueue_style('social', get_template_directory_uri() . '/public/fonts/Macan-ic/fontface.css', array());
+    wp_enqueue_style('custom', get_template_directory_uri() . '/public/custom/style.css', array());
     if (is_singular('services')) {
         wp_enqueue_style('services', get_template_directory_uri() . '/public/fonts/services-icons/fontface.css', array());
     }
@@ -41,7 +42,12 @@ function theme_scripts()
     if (is_singular('portfolio')){
         wp_enqueue_script('portfolio', get_template_directory_uri() . '/public/js/single-portfolio/app.js', '1.0.0', true);
     }
+    global $template;
 
+    if (basename($template) === 'landing.php'){
+        wp_enqueue_script('landing', get_template_directory_uri() . '/public/js/landing.js', '1.0.0', true);
+        wp_enqueue_style('landing', get_stylesheet_directory_uri() . '/public/css/landing.css');
+    }
     $url = $_SERVER["REQUEST_URI"];
     $slugEN = strpos($url, 'en');
 //  passing php values to javascript
@@ -566,3 +572,9 @@ function register_my_theme_with_wpml() {
     register_theme_directory( get_stylesheet_directory() );
 }
 add_action( 'after_setup_theme', 'register_my_theme_with_wpml' );
+
+
+
+
+
+

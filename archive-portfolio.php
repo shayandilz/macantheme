@@ -32,15 +32,15 @@ $slugEN = strpos($url, 'en');
             array_unshift($cats, (object)array('name' => $slugEN ? 'All' : 'مشاهده همه', 'term_taxonomy_id' => $term_ids));
             $s = 0;
             $i = 0;
-            foreach ($cats as $key => $cat) { ?>
+            foreach ($cats as $key => $cat) {?>
                 <li class="nav-item" role="presentation">
                     <button class="filterPortfolio lazy text-white text-center position-relative d-inline-block px-4 py-2 nav-link <?php if ($i == 0) {$i = 1;echo 'active';} ?>"
-                            id="cat-<?php echo $key ?>-tab"
+                            id="cat-<?php echo $cat->term_taxonomy_id; ?>-tab"
                             data-bs-toggle="tab"
-                            data-bs-target="#cat-<?php echo $key ?>"
+                            data-bs-target="#cat-<?php echo $cat->term_taxonomy_id; ?>"
                             style="width: max-content"
                             type="button" role="tab"
-                            aria-controls="cat-<?php echo $key ?>"
+                            aria-controls="cat-<?php echo $cat->term_taxonomy_id; ?>"
                             aria-selected="true">
                         <?php echo $cat->name; ?>
                     </button>
@@ -57,8 +57,8 @@ $slugEN = strpos($url, 'en');
                 ?>
                 <div class="tab-pane col-lg-8 col-md-11 fade <?php if ($key == 0) {
                     echo 'show active';
-                } ?>" id="cat-<?php echo $key; ?>" role="tabpanel"
-                     aria-labelledby="cat-<?php echo $key; ?>-tab">
+                } ?>" id="cat-<?php echo $cat->term_taxonomy_id; ?>" role="tabpanel"
+                     aria-labelledby="cat-<?php echo $cat->term_taxonomy_id; ?>-tab">
                     <div class="row g-2 grid" id="my-custom-post-type-container">
                         <?php
                         $args = array(

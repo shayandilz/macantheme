@@ -8,6 +8,20 @@ import imagesLoaded from 'imagesloaded';
 
 
 $(document).ready(function () {
+    // active tabs from card category inside
+    $('.categoryClick').click(function(e) {
+        e.preventDefault();
+        var selectedCategory = $(this).data('category-id');
+        localStorage.setItem('selectedCategory', selectedCategory);
+        location.reload();
+    });
+    var storedCategory = localStorage.getItem('selectedCategory');
+    if (storedCategory) {
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('show active');
+        $('#cat-'+storedCategory+'-tab').addClass('active');
+        $('#cat-' + storedCategory).addClass('show active');
+    }
     // Handle category button click
     jQuery('.category-button').click(function () {
         let categoryId = jQuery(this).data('category-id');
@@ -22,8 +36,9 @@ $(document).ready(function () {
     });
     setTimeout(function () {
         localStorage.setItem('categoryID', '');
+        localStorage.setItem('selectedCategory', '');
     }, 8000);
-
+//when browser closed - clear all local storage
     jQuery('#portfolioModal .modal-dialog').click(function (e) {
         if (jQuery(e.target).hasClass('modal-dialog')) {
             jQuery(this).closest('.modal').modal('hide');
@@ -61,7 +76,6 @@ $(document).ready(function () {
         });
     });
 })
-
 class AOSDisabler {
     constructor(className) {
         this.elements = document.querySelectorAll('.' + className);
