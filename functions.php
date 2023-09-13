@@ -7,10 +7,13 @@
 require get_theme_file_path('/inc/search-route.php');
 function theme_scripts()
 {
-
+    $url = $_SERVER["REQUEST_URI"];
+    $slugEN = strpos($url, '/en/') !== false;
     //    <!-- Icons -->
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/public/fonts/bootstrap/bootstrap-icons.css');
-    wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh/fontface.css', array());
+    if (!$slugEN) {
+        wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh/fontface.css', array());
+    }
     wp_enqueue_style('font-en', get_template_directory_uri() . '/public/fonts/YekanBakh-en/fontface.css', array());
     wp_enqueue_style('social', get_template_directory_uri() . '/public/fonts/Macan-ic/fontface.css', array());
     wp_enqueue_style('custom', get_template_directory_uri() . '/public/custom/style.css', array());
@@ -20,8 +23,6 @@ function theme_scripts()
 // CSS files
     wp_enqueue_style('style', get_stylesheet_directory_uri() . '/public/css/style.css', array(),);
 
-    $url = $_SERVER["REQUEST_URI"];
-    $slugEN = strpos($url, 'en');
     if ($slugEN){
         wp_enqueue_style('ltr-style', get_stylesheet_directory_uri() . '/public/css/ltr.css', array(),);
 
@@ -42,14 +43,6 @@ function theme_scripts()
     if (is_singular('portfolio')){
         wp_enqueue_script('portfolio', get_template_directory_uri() . '/public/js/single-portfolio/app.js', '1.0.0', true);
     }
-    global $template;
-
-    if (basename($template) === 'landing.php'){
-        wp_enqueue_script('landing', get_template_directory_uri() . '/public/js/landing.js', '1.0.0', true);
-        wp_enqueue_style('landing', get_stylesheet_directory_uri() . '/public/css/landing.css');
-    }
-    $url = $_SERVER["REQUEST_URI"];
-    $slugEN = strpos($url, 'en');
 //  passing php values to javascript
     wp_localize_script('main', 'jsData', array(
         'root_url' => $slugEN !== false ? site_url('/en') : get_site_url(),
@@ -572,9 +565,3 @@ function register_my_theme_with_wpml() {
     register_theme_directory( get_stylesheet_directory() );
 }
 add_action( 'after_setup_theme', 'register_my_theme_with_wpml' );
-
-
-
-
-
-

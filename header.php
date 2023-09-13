@@ -1,9 +1,7 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="UTF-8">
     <meta name="keywords" content="<?= get_bloginfo('name'); ?>">
-    <meta name="description" content="<?= get_bloginfo('description'); ?>">
     <meta name="author" content="<?= get_bloginfo('author'); ?>">
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,12 +32,14 @@
     <?php
     $domain = $_SERVER['HTTP_HOST'];
     $path = $_SERVER['REQUEST_URI'];
-    if ($domain === 'macan.agency' && strpos($path, '/en') === 0) {
+
+    if (!is_single() && $domain === 'macan.agency' && strpos($path, '/en') === 0) {
         // Load template part for domain.com/en
         get_template_part('template-parts/preload/en');
-    } elseif($domain === 'macan.agency'){
+    } elseif (!is_single() && $domain === 'macan.agency') {
         get_template_part('template-parts/preload/fa');
     }
+
 
 
     ?>

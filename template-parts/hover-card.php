@@ -23,6 +23,7 @@ if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio')) {
 
         <?php $archive_image = get_field('cover_image_for_archive'); ?>
         <img src="<?php echo $archive_image['url']; ?>" class="object-fit"
+             width="360" height="210"
              title="<?php the_title(); ?>"
              alt="<?php the_title(); ?>">
 

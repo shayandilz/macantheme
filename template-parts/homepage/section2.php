@@ -17,13 +17,13 @@ if (have_rows('section_2')):
 
 
             <div class="col-lg-7 g-5 gy-lg-5 row flex-row-reverse justify-content-center align-content-start align-content-lg-center mb-lg-5 m-0 custom-bg-opacity px-3 pb-5 pb-lg-0 px-lg-2 z-top">
-                <h2 class="text-center text-white" data-aos="fade-down" data-aos-delay="100">
+                <h1 class="text-center text-white" data-aos="fade-down" data-aos-delay="100">
                    <?php if ($section_title){
                        echo $section_title;
                    }else{
                        echo 'No Data Selected';
                    } ?>
-                </h2>
+                </h1>
                 <?php
                 if ($list_services) {
                     $i = 0;
@@ -54,7 +54,7 @@ if (have_rows('section_2')):
             </div>
             <div class="col-lg-5 position-absolute bottom-0 <?php echo $slugEN ? 'start-0' : 'end-0'; ?> custom-opacity-50" data-aos="fade-up" data-aos-duration="3000" data-aos-disable>
                 <?php if ($image){ ?>
-                    <img class="img-fluid"
+                    <img class="img-fluid" width="500" height="700"
                          src="<?php echo esc_url($image['url']); ?>"
                          alt="<?php echo $image['alt']; ?>"
                          title="<?php echo $image['alt']; ?>"

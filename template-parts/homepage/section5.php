@@ -13,7 +13,7 @@ if (have_rows('section_5')):
                  style="background-color: <?php echo esc_attr($color); ?>"
                  data-name="<?= $tab_name; ?>">
             <div class="container">
-                <div class="row px-0 mx-0 justify-content-between">
+                <div class="row px-lg-0 mx-lg-0 justify-content-lg-between justify-content-center">
                     <div class="col-lg-5">
                         <img data-aos="fade-up" data-aos-duration="3000" data-aos-disable
                              class="position-absolute bottom-0 <?php echo $slugEN ? 'end-0' : 'start-0'; ?> w-75 section5"
@@ -25,7 +25,7 @@ if (have_rows('section_5')):
                         <h2 class="text-center text-white" data-aos="fade-down" data-aos-delay="100">
                             <?= $section_title; ?>
                         </h2>
-                        <div class="row g-4 justify-content-center">
+                        <div class="row g-4 justify-content-center px-0">
                             <?php
                             $d = 0;
                             $args = array(

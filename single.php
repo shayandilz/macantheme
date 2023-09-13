@@ -38,7 +38,7 @@ while (have_posts()) :
                             <?php echo get_the_date('d  F , Y'); ?>
                             <div class="vr bg-white opacity-100"></div>
                             <span class="text-semi-light fs-6">
-                                <?php echo $slugEN ? 'Reading Time : ' .  reading_time() . ' mins' : 'مدت زمان مطالعه' . reading_time() . 'دقیقه'; ?>
+                                <?php echo $slugEN ? 'Reading Time : ' .  reading_time() . ' mins' : 'مدت زمان مطالعه ' . reading_time() . ' دقیقه'; ?>
                             </span>
                         </div>
                     </div>
@@ -55,9 +55,7 @@ while (have_posts()) :
                     if ($image_url) { ?>
                         <img class="img-fluid w-100"
                              src="<?php echo $image_url[0]; ?>" alt="<?= the_title(); ?>" title="<?= the_title(); ?>">
-                    <?php }
-                    ?>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -70,7 +68,6 @@ while (have_posts()) :
                                 <?php echo $slugEN ? 'Table of Content' : 'فهرست'; ?>
                             </h3>
                             <div class="<?php echo $slugEN ? 'px-5' : 'px-4'; ?>">
-
                                 <div class="d-flex align-items-center">
                                     <?php echo do_shortcode('[TOC]') ?>
                                 </div>
@@ -81,9 +78,6 @@ while (have_posts()) :
                         <div class="content bg-white py-3 h-100 shadow-sm gx-0 <?php echo $slugEN ? 'pe-4' : 'pe-0'; ?>">
                             <?php the_content(); ?>
                             <div class="text-center border-top border-1 border-danger mt-5 <?php echo $slugEN ? 'd-none' : ''; ?>">
-<!--                                <h5 class="mb-0 mt-4">-->
-<!--                                    ارسال نظر-->
-<!--                                </h5>-->
                                 <?php
                                 if (comments_open() || get_comments_number()) :
                                     comments_template();
@@ -136,7 +130,6 @@ while (have_posts()) :
             </div>
         </div>
     </section>
-
 <?php endwhile;
 wp_reset_query();
 get_footer(); ?>

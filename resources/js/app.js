@@ -8,6 +8,10 @@ import imagesLoaded from 'imagesloaded';
 
 
 $(document).ready(function () {
+    // Hide preloader when entering the page
+    setTimeout(function () {
+        $('#preloader-fa').fadeOut('slow');
+    }, 2400);
     // active tabs from card category inside
     $('.categoryClick').click(function(e) {
         e.preventDefault();
@@ -356,17 +360,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
-
-// Hide preloader when entering the page
-$(document).ready(function () {
-    setTimeout(function () {
-        $('#preloader-fa').fadeOut('slow');
-    }, 2400);
-});
-
-
-
-
-
-
-

@@ -13,6 +13,7 @@
         <div class="ratio ratio-16x9">
             <img src="<?php echo get_the_post_thumbnail_url() ?>"
                  class="object-fit"
+                 width="376" height="212"
                  alt="<?php the_title(); ?>">
         </div>
         <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end ">
