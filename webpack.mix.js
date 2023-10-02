@@ -9,6 +9,7 @@ mix.js('resources/js/single-blog/app.js', 'public/js/single-blog/app.js');
 mix.js('resources/js/single-portfolio/app.js', 'public/js/single-portfolio/app.js');
 
 mix.sass('resources/sass/ltr.scss', 'public/css')
+    .sass('resources/sass/modules/bootstrap-icons.scss' , 'public/css/bootstrap-icons.css')
     .sass('resources/sass/custom.scss', 'public/css/style.css', {}, [
         require("rtlcss")({}),
     ])

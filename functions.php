@@ -11,6 +11,7 @@ function theme_scripts()
     $slugEN = strpos($url, '/en/') !== false;
     //    <!-- Icons -->
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/public/fonts/bootstrap/bootstrap-icons.css');
+//    wp_enqueue_style('custom-style', get_template_directory_uri() . '/public/css/bootstrap-icons.css');
     if (!$slugEN) {
         wp_enqueue_style('font', get_template_directory_uri() . '/public/fonts/YekanBakh/fontface.css', array());
     }

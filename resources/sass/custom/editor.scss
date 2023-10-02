@@ -7,6 +7,9 @@
 strong {
   font-weight: 600 !important;
 }
+.single-post .content a {
+  font-weight: 600!important;
+}
 
 //list styles
 ol {
@@ -106,16 +109,16 @@ ul.pagination {
     line-height: 2;
   }
   blockquote {
-    @extend .p-lg-5 , .p-4 ;
+    @extend .p-lg-5 , .p-4 , .border-start , .border-danger , .border-5 , .my-3;
     background: #e3e0e0;
     color: black;
     > p:first-child:before {
       background-color: transparent !important;
       width: 10px !important;
-      content: '"';
+      content: '“';
     }
     > p:last-child:after {
-      content: ' "';
+      content: ' ”';
       width: 10px !important;
     }
   }

@@ -9,7 +9,7 @@
         </span>
 
     <?php } ?>
-    <a href="<?php echo get_permalink(); ?>">
+    <a target="_blank" href="<?php echo get_permalink(); ?>">
         <div class="ratio ratio-16x9">
             <img src="<?php echo get_the_post_thumbnail_url() ?>"
                  class="object-fit"

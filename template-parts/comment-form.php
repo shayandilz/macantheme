@@ -1,7 +1,7 @@
 <div>
 <?php
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, '/en/');
 ?>
     <?php if (comments_open()) {
         $req = get_option('require_name_email') ?>

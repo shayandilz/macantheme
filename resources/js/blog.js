@@ -82,7 +82,7 @@ function getPosts(page, category, search, isAppend) {
                     '<article data-aos-delay="' + i + '00" data-aos="zoom-in" class="position-relative overflow-hidden" title="' + title + '">' +
                     '<span class="d-inline-block position-absolute top-0 end-0 z-top p-2 small text-white"\n' +
                     'style="background-color: rgba(0, 0, 0, .5) !important">' + categoriesHtml + '</span>' +
-                    '<a href="' + link + '">' +
+                    '<a target="_blank" href="' + link + '">' +
                     '<div class="ratio ratio-16x9">' +
                     '<img src="' + image + '" class="object-fit" alt="' + title + '">' +
                     '</div>' +

@@ -2,7 +2,7 @@
 get_header();
 
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, '/en/');
 ?>
 
     <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden bg-danger">
@@ -13,7 +13,7 @@ $slugEN = strpos($url, 'en');
                         <?php echo $slugEN ? '404 - You are Lost!' : 'متاسفانه صفحه‌ی مورد نظر شما یافت نشد !'; ?>
                     </h4>
                     <p>
-                        <?php echo $slugEN ? 'Use the Search Below' : 'از طریق باکس زیر آن را جست‌وجو کنید : !'; ?>
+                        <?php echo $slugEN ? 'Use the Search Below' : 'از طریق باکس زیر آن را جست‌وجو کنید : '; ?>
 
                     </p>
                     <hr>

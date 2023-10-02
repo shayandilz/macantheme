@@ -6,7 +6,6 @@ import 'aos/dist/aos.css';
 import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';
 
-
 $(document).ready(function () {
     // Hide preloader when entering the page
     setTimeout(function () {
@@ -109,7 +108,10 @@ class AOSDisabler {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    if ($('img.rev-slidebg')) {
+        $('img.rev-slidebg').attr('width', '500');
+        $('img.rev-slidebg').attr('height', '500');
+    }
 
     const aosDisabler = new AOSDisabler('aos-remover');
     /*---------------------     SEARCH in HEADER     ---------------------------*/
