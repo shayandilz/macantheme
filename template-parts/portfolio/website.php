@@ -9,20 +9,21 @@ $ipad = $theme_uri . '/public/images/ipad.png';
 $mockups = get_field('mockup_image');
 $website_url = get_field('website_url');
 ?>
-<div class="container">
-    <div class="d-flex justify-content-center align-items-center min-vh-75 position-relative d-none d-lg-block">
+<section class="container">
+    <div class="position-relative d-none d-lg-block my-0"
+         style="height: 75vh">
         <div class="mac position-absolute">
-            <img src="<?php echo $macbook; ?>" alt="macbook-mockup">
+            <img class="w-100" src="<?php echo $macbook; ?>" alt="macbook-mockup">
             <div class="imgBX position-absolute"
                  style="background: url('<?php echo esc_url($mockups['desktop']['url']); ?>')"></div>
         </div>
         <div class="iphone position-absolute">
-            <img src="<?php echo $iphone; ?>" alt="iphone-mockup">
+            <img class="w-100" src="<?php echo $iphone; ?>" alt="iphone-mockup">
             <div class="imgBX position-absolute"
                  style="background: url('<?php echo esc_url($mockups['phone']['url']); ?>')"></div>
         </div>
         <div class="ipad position-absolute">
-            <img src="<?php echo $ipad; ?>" alt="ipad-mockup">
+            <img class="w-100" src="<?php echo $ipad; ?>" alt="ipad-mockup">
             <div class="imgBX position-absolute"
                  style="background: url('<?php echo esc_url($mockups['tablet']['url']); ?>')"></div>
         </div>
@@ -93,7 +94,7 @@ $website_url = get_field('website_url');
         </div>
 
     </div>
-    <div class="text-center my-lg-4 d-flex justify-content-center">
+    <div class="text-center d-flex justify-content-center">
         <a class="MoreLink position-relative d-inline-flex justify-content-center align-items-center lazy fs-6 gap-2 "
            href="<?php echo esc_url($website_url['url']) ?>">
             <?= $website_url['title']; ?>
@@ -102,4 +103,4 @@ $website_url = get_field('website_url');
             </h1>
         </a>
     </div>
-</div>
+</section>

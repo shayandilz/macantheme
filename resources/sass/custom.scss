@@ -488,7 +488,48 @@
     background-position: bottom !important;
   }
 }
-
+@media (max-width: 1600px) {
+  .ipad {
+    height: 410px;
+    right: 24%;
+    top: 13%;
+    width: 260px;
+    .imgBX {
+      height: 333px;
+      right: 10px;
+      top: 13px;
+      width: 240px;
+    }
+  }
+  .mac {
+    height: 319px;
+    right: 35%;
+    top: 26%;
+    width: 550px;
+    .imgBX {
+      height: 295px;
+      left: 52px;
+      top: 4px;
+      width: 445px;
+    }
+  }
+  .iphone {
+    right: 18%;
+    top: 37%;
+    width: 120px;
+    &:after {
+      height: 10px;
+      top: 10px;
+      width: 29%;
+    }
+    .imgBX {
+      height: 228px;
+      right: 7px;
+      top: 8px;
+      width: 105px;
+    }
+  }
+}
 .website-hover-card {
   //height: 500px;
   .imgBX {

@@ -9,10 +9,10 @@ import imagesLoaded from 'imagesloaded';
 $(document).ready(function () {
     // Hide preloader when entering the page
     setTimeout(function () {
-        $('#preloader-fa').fadeOut('slow');
+        $('#preloader').fadeOut('slow');
     }, 2400);
     // active tabs from card category inside
-    $('.categoryClick').click(function(e) {
+    $('.categoryClick').click(function (e) {
         e.preventDefault();
         var selectedCategory = $(this).data('category-id');
         localStorage.setItem('selectedCategory', selectedCategory);
@@ -22,7 +22,7 @@ $(document).ready(function () {
     if (storedCategory) {
         $('.nav-link').removeClass('active');
         $('.tab-pane').removeClass('show active');
-        $('#cat-'+storedCategory+'-tab').addClass('active');
+        $('#cat-' + storedCategory + '-tab').addClass('active');
         $('#cat-' + storedCategory).addClass('show active');
     }
     // Handle category button click
@@ -79,6 +79,7 @@ $(document).ready(function () {
         });
     });
 })
+
 class AOSDisabler {
     constructor(className) {
         this.elements = document.querySelectorAll('.' + className);
@@ -354,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
     initializeMasonry();
     // Event listener for Bootstrap tab shown event
     document.addEventListener("shown.bs.tab", function (event) {

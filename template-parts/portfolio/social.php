@@ -1,6 +1,6 @@
 <?php
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, '/en/') !== false;
 
 if (get_field('row_width') == 'col-lg-3') {
     $col_class = 'col-lg-3';
@@ -13,7 +13,7 @@ if (get_field('row_width') == 'col-lg-3') {
     get_template_part('template-parts/portfolio/gallery');
     ?>
 
-    <div class="row align-items-center justify-content-center py-3">
+    <div class="row align-items-center justify-content-center py-3 <?php echo $slugEN ? 'flex-row-reverse' : ''; ?>">
         <div class="col-lg-6 pb-3 pb-lg-0 social_border">
             <div class="text-white lh-2">
                 <img width="90px" src="<?php echo get_the_post_thumbnail_url() ?>" alt="<?= get_the_title(); ?>" title="<?= get_the_title(); ?>">

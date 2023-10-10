@@ -33,15 +33,12 @@
     $domain = $_SERVER['HTTP_HOST'];
     $path = $_SERVER['REQUEST_URI'];
 
-    if (!is_single() && $domain === 'macan.agency' && strpos($path, '/en') === 0) {
+    if (!is_singular('portfolio') && $domain === 'macan.agency' && strpos($path, '/en') === 0) {
         // Load template part for domain.com/en
         get_template_part('template-parts/preload/en');
-    } elseif (!is_single() && $domain === 'macan.agency') {
+    } elseif (!is_singular('portfolio') && $domain === 'macan.agency') {
         get_template_part('template-parts/preload/fa');
     }
-
-
-
     ?>
 </header>
 
