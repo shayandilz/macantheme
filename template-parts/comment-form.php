@@ -5,7 +5,7 @@ $slugEN = strpos($url, '/en/');
 ?>
     <?php if (comments_open()) {
         $req = get_option('require_name_email') ?>
-        <div class="mb-4">
+        <div class="my-4">
             <p class="h2 normal-md-down fs-2 m-0">
                 <?php comment_form_title($slugEN ? 'Post a Comment' : 'افزودن نظر' ,  $slugEN ? 'Answer to s%' : 'پاسخ به %s'); ?>
             </p>

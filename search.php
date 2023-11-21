@@ -9,13 +9,13 @@
 get_header();
 
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, 'en/');
 ?>
 
     <section class="container py-5 min-vh-100">
         <div class="row g-2">
             <h4 class="py-4 text-white">
-                <?php printf(esc_html__($slugEN ? 'Search Result for %s :' : ' نتایج جستجو: %s ', 'macan'), get_search_query()); ?>
+                <?php printf(esc_html__($slugEN ? 'Search Result for : %s' : ' نتایج جستجو: %s ', 'macan'), get_search_query()); ?>
             </h4>
             <?php if (have_posts()) {
             ?>
@@ -23,13 +23,9 @@ $slugEN = strpos($url, 'en');
             /* Start the Loop */
             while (have_posts()) :
                 the_post(); ?>
-
-
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-4 col-md-6">
                     <?php get_template_part('template-parts/blog-home-card'); ?>
                 </div>
-
-
             <?php endwhile; ?>
             <div class="pb-5 pt-3 w-100">
                 <?php
@@ -64,7 +60,7 @@ $slugEN = strpos($url, 'en');
 
                 <?php endif;
                 wp_reset_postdata();
-                }else{ ?>
+                } else { ?>
                     <div class="row px-0 justify-content-center align-items-center min-vh-50">
                         <div class="col-lg-8 d-flex flex-column justify-content-center text-center text-white">
                             <h4>
@@ -87,8 +83,8 @@ $slugEN = strpos($url, 'en');
                         </div>
                     </div>
                 <?php } ?>
-            </div><!-- #main -->
+            </div>
+        </div><!-- #main -->
     </section>
-
 <?php
 get_footer();

@@ -60,6 +60,24 @@ $(document).ready(function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    function addTargetBlankToLinks() {
+        // Get the div element with the id "single-content"
+        const singleContentDiv = document.getElementById("single-content");
+
+        // Check if the div element exists
+        if (singleContentDiv) {
+            // Find all the anchor (a) elements inside the div
+            const links = singleContentDiv.querySelectorAll("a");
+
+            // Loop through the links and add the target="_blank" attribute
+            links.forEach(link => {
+                link.setAttribute("target", "_blank");
+            });
+        } else {
+            console.log("Element with id 'single-content' not found.");
+        }
+    }
+    addTargetBlankToLinks();
     // table active color
     var tocItems = document.querySelectorAll('.table-of-contents a');
     tocItems.forEach(function (item) {

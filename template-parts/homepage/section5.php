@@ -7,7 +7,7 @@ if (have_rows('section_5')):
         $color = get_sub_field('background_color');
 
         $url = $_SERVER["REQUEST_URI"];
-        $slugEN = strpos($url, 'en');
+        $slugEN = strpos($url, '/en/');
         ?>
         <section class="h-100 w-100 py-5 py-lg-0 overflow-hidden position-relative d-flex justify-content-center align-items-center mobile-section-bg aos-remover"
                  style="background-color: <?php echo esc_attr($color); ?>"
@@ -28,32 +28,28 @@ if (have_rows('section_5')):
                         <div class="row g-4 justify-content-center px-0">
                             <?php
                             $d = 0;
-                            $args = array(
-                                'post_type' => 'clients',
-                                'post_status' => 'publish',
-                                'posts_per_page' => -1,
-                                'ignore_sticky_posts' => true
-                            );
-                            $loopClients = new WP_Query($args);
-                            if ($loopClients->have_posts()) {
-                                while ($loopClients->have_posts()) : $loopClients->the_post();
+                            // Get the post objects from the clients_list field
+                            $selected_clients = get_sub_field('clients_list');
+                            if ($selected_clients) {
+                                foreach ($selected_clients as $client) {
                                     $d++; ?>
-                                    <div class="col-lg-3 col-4" title="<?php the_title(); ?>" data-aos="zoom-in"
+
+                                    <div class="col-lg-3 col-4" title="<?php echo get_the_title($client); ?>" data-aos="zoom-in"
                                          data-aos-delay="<?= $d; ?>00">
                                         <?php
-                                        $client_image = get_field('img_class', get_the_ID(), 'clients');
-                                        $client_attr = get_field('client_attr', get_the_ID(), 'clients');
+                                        $client_image = get_field('img_class', $client);
+                                        $client_attr = get_field('client_attr', $client);
                                         if (!empty($client_attr)): ?>
                                             <img class="<?= $client_image; ?>" width="100" height="100"
                                                  src="<?php echo $client_attr; ?>"
-                                                 alt="<?php the_title(); ?>"/>
+                                                 alt="<?php echo get_the_title($client); ?>"/>
                                         <?php endif; ?>
                                     </div>
-                                <?php endwhile;
+                                <?php }
                             }
-                            wp_reset_postdata();
                             ?>
                         </div>
+
                     </div>
                 </div>
             </div>

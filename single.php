@@ -17,10 +17,17 @@ while (have_posts()) :
                 $category_detail = get_the_category($post->ID);//$post->ID
                 foreach ($category_detail as $category) {
                     $category_url = get_category_link($category->term_id); ?>
-                    <span data-category-id="<?= $category->term_id; ?>"
-                          class="text-white text-decoration-none fs-6 text-shadow category-button">
-                        <?php echo $category->name ?>
-                    </span>
+                    <a href="<?= get_post_type_archive_link('post'); ?>" id="catNameSingle"
+                       class="text-white text-decoration-none fs-6 text-shadow">
+                        <?php echo $category->name; ?>
+                    </a>
+                    <script>
+                        jQuery(document).ready(function () {
+                            jQuery('#catNameSingle').on('click', function () {
+                                localStorage.setItem('categoryID', '<?php echo $category->term_id; ?>');
+                            });
+                        });
+                    </script>
                 <?php } ?>
                 <h1 class="fs-4 text-white my-3">
                     <?php the_title(); ?>
@@ -32,13 +39,19 @@ while (have_posts()) :
                     </div>
                     <div class="d-flex flex-column justify-content-center align-items-start gap-3">
                         <span class="fw-normal text-white fw-lighter">
-                            <?php echo get_the_author_meta('display_name', $post->post_author); ?>
+                            <?php
+                            $author_id = get_the_author_meta('ID');
+                            $author_en = get_field('name_en', 'user_'. $author_id );
+                            ?>
+<!--                            --><?php //echo get_the_author_meta('display_name', $post->post_author); ?>
+                            <?= $slugEN ? $author_en : get_the_author_meta('display_name', $post->post_author); ?>
+
                         </span>
                         <div class="d-inline-flex text-white gap-3 align-items-center fw-lighter">
                             <?php echo get_the_date('d  F , Y'); ?>
                             <div class="vr bg-white opacity-100"></div>
                             <span class="text-semi-light fs-6">
-                                <?php echo $slugEN ? 'Reading Time : ' .  reading_time() . ' mins' : 'مدت زمان مطالعه ' . reading_time() . ' دقیقه'; ?>
+                                <?php echo $slugEN ? 'Reading Time : ' . reading_time() . ' mins' : 'مدت زمان مطالعه ' . reading_time() . ' دقیقه'; ?>
                             </span>
                         </div>
                     </div>
@@ -76,7 +89,9 @@ while (have_posts()) :
                     </div>
                     <article class="col-lg-9 col-12 text-justify text-dark lh-lg sidebar-container">
                         <div class="content bg-white py-3 h-100 shadow-sm gx-0 <?php echo $slugEN ? 'pe-4' : 'pe-0'; ?>">
-                            <?php the_content(); ?>
+                            <div id="single-content">
+                                <?php the_content(); ?>
+                            </div>
                             <div class="text-center border-top border-1 border-danger mt-5 <?php echo $slugEN ? 'd-none' : ''; ?>">
                                 <?php
                                 if (comments_open() || get_comments_number()) :
@@ -90,7 +105,6 @@ while (have_posts()) :
                 </div>
             </div>
         </div>
-
         <div style="background-color: #f1f1f1">
             <div class="custom-container">
                 <div class="row justify-content-center align-items-stretch">
@@ -131,5 +145,5 @@ while (have_posts()) :
         </div>
     </section>
 <?php endwhile;
-wp_reset_query();
-get_footer(); ?>
+wp_reset_query();?>
+<?php get_footer(); ?>

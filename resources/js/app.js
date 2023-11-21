@@ -7,6 +7,7 @@ import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';
 
 $(document).ready(function () {
+
     // Hide preloader when entering the page
     setTimeout(function () {
         $('#preloader').fadeOut('slow');
@@ -26,7 +27,7 @@ $(document).ready(function () {
         $('#cat-' + storedCategory).addClass('show active');
     }
     // Handle category button click
-    jQuery('.category-button').click(function () {
+    $('.category-button').click(function () {
         let categoryId = jQuery(this).data('category-id');
         localStorage.setItem('categoryID', categoryId);
 
@@ -40,15 +41,15 @@ $(document).ready(function () {
     setTimeout(function () {
         localStorage.setItem('categoryID', '');
         localStorage.setItem('selectedCategory', '');
-    }, 8000);
+    }, 15000);
 //when browser closed - clear all local storage
-    jQuery('#portfolioModal .modal-dialog').click(function (e) {
-        if (jQuery(e.target).hasClass('modal-dialog')) {
-            jQuery(this).closest('.modal').modal('hide');
+    $('#portfolioModal .modal-dialog').click(function (e) {
+        if ($(e.target).hasClass('modal-dialog')) {
+            $(this).closest('.modal').modal('hide');
         }
     });
 
-    jQuery(function ($) {
+    $(function () {
         const macanisms = [
             {element: '.M-Macanism', shape: '.M-shape', flower: '.M-Flower', description: '.M-Description'},
             {element: '.A-Macanism', shape: '.A-shape', flower: '.A-Flower', description: '.A-Description'},
@@ -212,8 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
     // menu animations
-
-
     let index = 0;
 
     submenuItems.each(function () {

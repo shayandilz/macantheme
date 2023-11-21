@@ -32,6 +32,7 @@ if (have_rows('section_4')):
                             $args = array(
                                 'post_type' => 'post',
                                 'post_status' => 'publish',
+                                'orderby' => 'rand',
                                 'posts_per_page' => '4',
                                 'ignore_sticky_posts' => true
                             );

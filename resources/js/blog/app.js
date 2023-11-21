@@ -1,12 +1,11 @@
 import $ from 'jquery';
-import 'regenerator-runtime/runtime'; // Import the regenerator runtime for async/await support
+// import 'regenerator-runtime/runtime'; // Import the regenerator runtime for async/await support
 
 class Blog {
     constructor() {
         this.searchInput = $('#search-input');
         this.searchResults = $('#search-results');
         this.loadingSpinner = $('#loading-spinner');
-
         this.currentPage = 1;
         this.perPage = 9;
         this.totalPages = 1;
@@ -16,8 +15,6 @@ class Blog {
         this.isLoadMore = false;
         this.loadLatestPosts();
         this.bindEvents();
-
-
     }
 
     bindEvents() {

@@ -2,13 +2,10 @@
 /**
  * Enqueue scripts and styles.
  */
-
-
 require get_theme_file_path('/inc/search-route.php');
-function theme_scripts()
-{
+function theme_scripts() {
     $url = $_SERVER["REQUEST_URI"];
-    $slugEN = strpos($url, '/en/') !== false;
+    $slugEN = strpos($url, 'en/') !== false;
     //    <!-- Icons -->
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/public/fonts/bootstrap/bootstrap-icons.css');
 //    wp_enqueue_style('custom-style', get_template_directory_uri() . '/public/css/bootstrap-icons.css');
@@ -369,7 +366,7 @@ function parse_toc($headings, $index, $recursive_counter)
     if (isset($current_element["classes"]) && $current_element["classes"] && in_array("toc-bold", $current_element["classes"])) {
         echo $name;
     } else {
-        echo "<a class='text-decoration-none fs-6' href='#" . $id . "'>" . $name . "</a>";
+        echo "<a class='text-decoration-none fs-6' rel='noindex'  href='#" . $id . "'>" . $name . "</a>";
     }
     if ($next_element && intval($next_element["tag"]) > $tag) {
         parse_toc($headings, $index + 1, $recursive_counter + 1);
@@ -539,8 +536,8 @@ function get_rest_featured_image($object, $field_name, $request)
 function searchfilter($query)
 {
 
-    if ($query->is_search && !is_admin()) {
-        $query->set('post_type', array('post'));
+    if ($query->is_search && $query->is_main_query() && !is_admin()) {
+        $query->set('post_type', array('post', 'page', 'services' , 'portfolio'));
     }
 
     return $query;

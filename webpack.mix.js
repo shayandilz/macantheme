@@ -13,7 +13,6 @@ mix.sass('resources/sass/ltr.scss', 'public/css')
     .sass('resources/sass/custom.scss', 'public/css/style.css', {}, [
         require("rtlcss")({}),
     ])
-    .sourceMaps() // Enable source maps for both JavaScript and CSS
     .options({
         processCssUrls: true,
     });

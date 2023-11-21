@@ -2,7 +2,7 @@
 get_header();
 
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, '/en/');
+$slugEN = strpos($url, 'en/');
 ?>
 
     <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden bg-danger">
@@ -27,7 +27,7 @@ $slugEN = strpos($url, '/en/');
                     <form class="searchform w-100" role="search" method="get" action="https://macan.agency/">
                         <label for="search" class="screen-reader-text">Search:</label>
                         <input type="text"
-                               class="field searchform-s w-100"
+                               class="field searchform-s w-100 p-2"
                                name="s"
                                value=""
                                placeholder="<?php echo $slugEN ? 'Type in ...' : 'عبارت مورد نظرتان را تایپ و دکمه&zwnj;ی اینتر را فشار دهید ...'; ?>">

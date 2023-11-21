@@ -1,5 +1,16 @@
 @include media-breakpoint-up(lg) {
-  .home main .swiper-wrapper{
+  .scrolled .category-tabs {
+    top:6.5% !important;
+    padding: 0.5rem 0;
+  }
+  .category-content {
+    margin-top:8% ;
+  }
+  .category-tabs {
+    top:20%;
+    padding: 1rem 0;
+  }
+  .home main .swiper1 > .swiper-wrapper{
     height: 100vh;
   }
   .sidebar-area{
@@ -28,6 +39,17 @@
 
 }
 @include media-breakpoint-down(lg) {
+  .scrolled .category-tabs {
+    padding: 0.7rem 0;
+    top:8%;
+  }
+  .category-content {
+    margin-top:15% ;
+  }
+  .category-tabs {
+    top:28%;
+    padding: 1rem 0;
+  }
   ul .wpml-ls-menu-item a{
     justify-content: center!important;
   }
@@ -89,7 +111,7 @@
   .direction-aware-hover img{
     width: 100%;
   }
-  .home main .swiper-wrapper{
+  .home main .swiper1 > .swiper-wrapper{
     display: block!important;
   }
   .mobile-100-vh{

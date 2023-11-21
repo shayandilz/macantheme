@@ -5,6 +5,7 @@ $slugEN = strpos($url, 'en');
 ?>
 
     <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden">
+            <h1 class="pt-5 text-center mb-0 position-absolute top-0 text-white end-0 start-0 mt-3 mt-lg-5 z-top"><?= get_the_title() ; ?></h1>
         <div class="d-none d-lg-block">
             <?php
             $slider = get_field('slider_field');

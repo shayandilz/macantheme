@@ -76,6 +76,24 @@ function homeSwiper() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const swiper2 = new Swiper('.social', {
+        effect: 'slide',
+        speed: 900,
+        autoplay: {
+            delay: 1000,
+            disableOnInteraction: true,
+        },
+        slidesPerView: 1,
+        spaceBetween: 10,
+        centeredSlides: false ,
+        grabCursor: true,
+        direction: 'horizontal',
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+        },
+    });
     function handleResponsive() {
         // Check the screen size or viewport dimensions
         if (window.innerWidth > 1024) {

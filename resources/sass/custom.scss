@@ -231,7 +231,27 @@
     }
   }
 }
-
+//blog
+.category-tabs {
+  transition: all 0.2s linear;
+  .button-dark {
+    min-width: fit-content;
+  }
+}
+#loading-spinner .spinner-border {
+  width:100px;
+  height: 100px;
+}
+.comment-box p {
+  margin-bottom: 0 !important;
+}
+.media-list ul.children {
+  border-left: 1px solid $danger;
+  @extend .bg-opacity-50;
+  .comment-box {
+    padding-right: 0 !important;
+  }
+}
 //blog card hover effect
 .aos2 article:hover {
   img {

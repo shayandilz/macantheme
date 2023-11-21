@@ -1,6 +1,6 @@
 <?php
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, 'en/');
 ?>
 
 <div class="search-box position-relative w-100 mx-auto mt-5">

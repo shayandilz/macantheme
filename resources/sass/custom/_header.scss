@@ -234,6 +234,9 @@ progress::-webkit-progress-bar {
 #navbarMenu {
   > li {
     color: #fff;
+   > a {
+     padding: 15px 0
+   }
   }
 
   .menu-item-has-children {
@@ -250,13 +253,12 @@ progress::-webkit-progress-bar {
       text-align: left;
       width: max-content;
       opacity: 0;
-      visibility: hidden;
       transition: all 0.3s linear;
       position: absolute;
       top: 100%;
       list-style: none;
       z-index: -100;
-      display: grid;
+      display: none;
       gap: 8px;
       background: #fff;
       height: unset;
@@ -284,7 +286,7 @@ progress::-webkit-progress-bar {
         opacity: 1;
         z-index: 1;
         height: auto;
-        visibility: visible;
+        display: grid;
       }
     }
   }

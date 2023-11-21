@@ -1,6 +1,6 @@
 <?php
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, '/en/');
 $category_detail = get_the_terms(get_the_ID(), 'portfolio_categories');
 
 if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio')) {
@@ -19,7 +19,7 @@ if ($category_detail[0]->term_id == 18 && is_post_type_archive('portfolio')) {
     <div class="direction-aware-hover__right bottom-0 start-0 end-0 top-0 p-0 position-absolute z-1"></div>
     <div class="direction-aware-hover__top bottom-0 start-0 end-0 top-0 p-0 position-absolute z-1"></div>
     <div class="direction-aware-hover__bottom bottom-0 start-0 end-0 top-0 p-0 position-absolute z-1"></div>
-    <div class="h-100 <?= $ratio; ?>">
+    <div class="h-100 <?= $args['ratio'] ?? $ratio; ?>">
 
         <?php $archive_image = get_field('cover_image_for_archive'); ?>
         <img src="<?php echo $archive_image['url']; ?>" class="object-fit"

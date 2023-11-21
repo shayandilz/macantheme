@@ -1,5 +1,6 @@
 <?php
 get_header();
+$title = get_the_title(10234);
 $portfolio = array(
     'post_type' => 'portfolio',
     'post_status' => 'publish',
@@ -9,10 +10,10 @@ $portfolio = array(
 $loop_portfolio = new WP_Query($portfolio);
 
 $url = $_SERVER["REQUEST_URI"];
-$slugEN = strpos($url, 'en');
+$slugEN = strpos($url, 'en/');
 ?>
-
     <section class="py-5 container-fluid min-vh-100 aos-remover">
+        <h1 class="pt-5 text-center text-white"><?= $slugEN ? get_the_title(13251) : get_the_title(10234); ?></h1>
         <ul class="nav nav-tabs border-bottom-0 justify-content-center gap-4 py-2 mt-5 mb-2"
             id="myTab"
             role="tablist">

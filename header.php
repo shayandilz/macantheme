@@ -1,7 +1,7 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta name="keywords" content="<?= get_bloginfo('name'); ?>">
+    <meta name="keywords" content="<?= get_field('keywords' , 'option'); ?>">
     <meta name="author" content="<?= get_bloginfo('author'); ?>">
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -7,9 +7,9 @@ get_header();
 <?php $thumbnail_url = get_the_post_thumbnail_url(); ?>
     <section class="h-100 w-100 position-relative overflow-x-hidden overflow-y-hidden <?php echo $slugEN ? 'lang-en' : ''; ?>" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>'); background-position: right;background-repeat: no-repeat;background-size: cover;">
         <div class="container">
-            <div class="row px-0 min-vh-100 <?php echo $slugEN ? 'justify-content-lg-start ' : 'justify-content-lg-end '; ?> justify-content-center align-items-center"
-            >
+            <div class="row px-0 min-vh-100 <?php echo $slugEN ? 'justify-content-lg-start ' : 'justify-content-lg-end '; ?> justify-content-center align-items-center">
                 <div class="col-lg-6 d-flex flex-column align-items-center align-items-lg-start justify-content-center justify-content-lg-start gap-4 custom-border py-3 px-3 z-top">
+                    <h1 class="text-center text-white fw-bold"><?= get_the_title();?></h1>
                     <?php if (have_rows('address', 'option')): ?>
                         <?php while (have_rows('address', 'option')): the_row();
                             $addressText = get_sub_field('text');

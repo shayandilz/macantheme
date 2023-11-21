@@ -16,7 +16,7 @@ $slugEN = strpos($url, '/en/') !== false;
         ?>
     </div>
 </div>
-<div class="col-lg-6 row justify-content-center align-content-center mb-5 z-1 pt-4 pt-lg-0 <?php echo $slugEN ? 'order-2 order-lg-1 ' : ' '; ?>">
+<div class="col-lg-6 row justify-content-center align-content-center mb-5 z-1 pt-4 pt-lg-0 z-2 <?php echo $slugEN ? 'order-2 order-lg-1 ' : ' '; ?>">
     <h1 class="text-center text-white fs-3"
         data-aos="fade-down"
         data-aos-delay="100">

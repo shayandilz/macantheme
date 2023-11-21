@@ -74,7 +74,7 @@
 
 </div>
 
-<button class="bg-transparent border-0 btn top-0 end-0 pt-3 pe-3 <?= is_singular('post') ? 'position-fixed' : 'position-absolute'; ?> "
+<button class="bg-transparent border-0 btn top-0 end-0 pt-3 pe-3 <?= is_singular('post')  ? 'position-fixed' : 'position-absolute'; ?> "
         type="button"
         data-bs-toggle="modal"
         aria-hidden="true"

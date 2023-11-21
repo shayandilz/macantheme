@@ -4,10 +4,10 @@ get_header();
 $image = get_field('img_bck');
 ?>
 
-    <section class="min-vh-100 pt-5 position-relative overflow-x-hidden overflow-y-hidden d-flex align-items-center justify-content-center "
+    <section class="min-vh-100 pt-5 position-relative overflow-x-hidden overflow-y-hidden row align-items-center justify-content-center "
              style='background-size: contain!important; ;background: url("<?php echo esc_url($image['url']); ?>") no-repeat top left;'>
-
-        <div class="bg-dark bg-opacity-10 py-3 z-top mt-5 d-flex justify-content-center align-items-center flex-column custom-container">
+        <h1 class="pt-5 text-center mb-0 text-white fw-bold"><?= get_the_title();?></h1>
+        <div class="bg-dark bg-opacity-10 py-3 z-top mt-3 d-flex justify-content-center align-items-center flex-column custom-container">
             <ul class="nav px-lg-5" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="button button-white active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">

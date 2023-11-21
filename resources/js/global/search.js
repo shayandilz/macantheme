@@ -62,11 +62,33 @@ class Search {
     getResults() {
         $.getJSON(jsData.root_url + '/wp-json/search/v1/search?term=' + this.searchField.val(), (results) => {
             this.resultsDiv.html(`
+            <div class="pt-3">
+                ${results.page.length ? `<h5 class="my-3 text-white text-center">${window.location.href.includes('/en') ? 'page' : 'صفحات'}</h5>` : ''}
+                ${results.page.length ? '<div class="row g-2">' : ''}
+                ${results.page.map((item, index) =>
+                            `<div class="col-lg-4 col-md-6">
+                        <article class="position-relative overflow-hidden" title="${item.title}">
+                            <a href="${item.url}">
+                                <div class="ratio ratio-16x9">
+                                    <img class="object-fit" src="${item.img}" alt="${item.title}">
+                                </div>
+                                <div class="position-absolute bottom-0 start-0 h-100 w-100 d-flex justify-content-center align-items-end">
+                                    <div class="h-100 w-100 text-center">
+                                        <p class="title text-center text-white position-absolute bottom-0 start-0 end-0">${item.title}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </div>`
+                        ).join('')}
+                ${results.page.length ? '</div>' : ''}
+            </div>
+       
                 <div class="pt-3">
                         <h5  class="my-3 text-white text-center ">${window.location.href.includes('/en') ? 'Blog' : 'مقالات'}</h5>
-                        ${results.post.length ? '<div class="row g-2">' : '<p class="p-2 m-0 border-top">هیچ مقاله ای یافت نشد</p>'}
+                        ${results.post.length ? '<div class="row g-2">' : `<p class="pt-4 m-0 border-top text-info text-opacity-50 text-center">${window.location.href.includes('/en') ? 'No articles found' : 'هیچ مقاله ای یافت نشد'}</p>`}
                         ${results.post.map((item, index) =>
-                `<div class="col-lg-4 col-md-6">
+                        `<div class="col-lg-4 col-md-6">
                                 <article class="position-relative overflow-hidden" title="${item.title}">
                                     <span class="d-inline-block position-absolute top-0 end-0 z-top p-2 small text-white" style="background-color: rgba(0, 0, 0, .5) !important">
                                         ${item.category}
@@ -83,13 +105,17 @@ class Search {
                                         </div>
                                     </a>
                                 </article>
-                            </div>`
-            ).join(' ')}
+                        </div>` ).join(' ')}
                         ${results.post.length ? '</div>' : ''}
                 </div>
             `)
-            this.isSpinnerVisible = false;
-            this.searchSubmit.fadeIn()
+            if (results.post.length) {
+                this.isSpinnerVisible = false;
+                this.searchSubmit.fadeIn()
+            }
+            if(!results.post.length) {
+                this.searchSubmit.fadeOut()
+            }
         });
     }
 

@@ -105,7 +105,7 @@
 <div class="modal modal-xl" style="backdrop-filter: blur(5px);" aria-hidden="true" tabindex="-1" id="searchModal"
      aria-labelledby="modalSearchLabel">
     <div class="modal-dialog">
-        <div class="modal-content bg-transparent">
+        <div class="modal-content bg-transparent border-0">
             <div class="modal-header">
                 <button type="button" class="search-close bg-transparent border-0 text-white fs-3"
                         data-bs-dismiss="modal"

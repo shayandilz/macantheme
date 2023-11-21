@@ -9,13 +9,15 @@ if (have_rows('section_3')):
         $list_services = get_sub_field('select_portfolio');
 
         $url = $_SERVER["REQUEST_URI"];
-        $slugEN = strpos($url, 'en');
+        $slugEN = strpos($url, 'en/');
         ?>
-        <section  class="h-100 w-100 position-relative row py-5 py-lg-0 px-0 mx-0 justify-content-lg-between justify-content-center mobile-section-bg overflow-hidden aos-remover"
-                 style="background-color: <?php echo esc_attr($color); ?>"
-                 data-name="<?= $tab_name; ?>">
+        <section
+                class="h-100 w-100 position-relative row py-5 py-lg-0 px-0 mx-0 justify-content-lg-between justify-content-center mobile-section-bg overflow-hidden aos-remover"
+                style="background-color: <?php echo esc_attr($color); ?>"
+                data-name="<?= $tab_name; ?>">
             <div class="col-lg-5">
-                <img data-aos="<?php echo $slugEN ? 'fade-up-right' : 'fade-up-left'; ?>" data-aos-duration="3000" data-aos-disable
+                <img data-aos="<?php echo $slugEN ? 'fade-up-right' : 'fade-up-left'; ?>" data-aos-duration="3000"
+                     data-aos-disable
                      class="position-absolute bottom-0 <?php echo $slugEN ? 'end-0' : 'start-0'; ?> w-75 section3"
                      src="<?php echo esc_url($image['url']); ?>"
                      alt="<?php echo $image['alt']; ?>"
@@ -38,13 +40,13 @@ if (have_rows('section_3')):
                     id="myTab" role="tablist">
                     <?php
                     $terms = array();
-                    $post_terms = get_terms( array(
+                    $post_terms = get_terms(array(
                         'taxonomy' => 'portfolio_categories',
                         'hide_empty' => false, // set to true if you only want to retrieve categories that have posts assigned to them
-                    ) );
+                    ));
 
-                    if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
-                        foreach ( $post_terms as $term ) {
+                    if (!empty($post_terms) && !is_wp_error($post_terms)) {
+                        foreach ($post_terms as $term) {
                             $terms[$term->term_id] = $term;
                         }
                     }
@@ -73,7 +75,9 @@ if (have_rows('section_3')):
                     <?php
                     $b = 0;
                     $s = 0;
-                    foreach ($terms as $term) {
+                    foreach ($terms
+
+                             as $term) {
                         $s++;
                         $category_id = $term->term_id; ?>
                         <div class="tab-pane col-lg-10 fade <?php if ($s == 1) {
@@ -81,42 +85,67 @@ if (have_rows('section_3')):
                         }
                         ?>" id="cat-<?= $category_id; ?>" role="tabpanel"
                              aria-labelledby="cat-<?= $category_id; ?>-tab">
-                            <div class="row g-2">
-                                <?php
-                                $args = array(
-                                    'post_type' => 'portfolio',
-                                    'ignore_sticky_posts' => 1,
-                                    'posts_per_page' => 4,
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'portfolio_categories',
-                                            'field' => 'term_id',
-                                            'terms' => $category_id,
-                                            'operator' => 'IN'
-                                        )
-                                    )
-                                );
-                                $loopPortfolio = new WP_Query($args);
-                                if ($loopPortfolio->have_posts()) {
-                                    while ($loopPortfolio->have_posts()) : $loopPortfolio->the_post(); $b++;
-                                        $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
-                                        if ($category_ids[0]->term_id == ($slugEN ? 33 : 18)){ ?>
-                                            <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
-                                                 data-aos-delay="<?= $b; ?>00">
-                                                <?php get_template_part('template-parts/home-website-hover-card'); ?>
-                                            </div>
-                                        <?php }else{ ?>
-                                            <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
-                                                 data-aos-delay="<?= $b; ?>00">
-                                                <?php get_template_part('template-parts/hover-card'); ?>
-                                            </div>
-                                        <?php } ?>
+                            <?php if ($category_id == ($slugEN ? 31 : 17) or $category_id == ($slugEN ? 32 : 16)) { ?>
+                            <div class="swiper social">
+                                <div class="swiper-wrapper">
+                                    <?php } else { ?>
+                                    <div class="row g-2">
+                                        <?php }
+                                        $args = array(
+                                            'post_type' => 'portfolio',
+                                            'ignore_sticky_posts' => 1,
+                                            'orderby' => 'rand',
+                                            'posts_per_page' => 4,
+                                            'tax_query' => array(
+                                                array(
+                                                    'taxonomy' => 'portfolio_categories',
+                                                    'field' => 'term_id',
+                                                    'terms' => $category_id,
+                                                    'operator' => 'IN'
+                                                )
+                                            )
+                                        );
+                                        $loopPortfolio = new WP_Query($args);
+                                        if ($loopPortfolio->have_posts()) {
+                                            while ($loopPortfolio->have_posts()) : $loopPortfolio->the_post();
+                                                $b++;
+                                                $category_ids = get_the_terms(get_the_ID(), 'portfolio_categories');
+                                                if ($category_ids[0]->term_id == ($slugEN ? 33 : 18)) { ?>
+                                                    <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"
+                                                         data-aos-delay="<?= $b; ?>00">
+                                                        <?php get_template_part('template-parts/home-website-hover-card'); ?>
+                                                    </div>
+                                                <?php }
+                                                if ($category_ids[0]->term_id == ($slugEN ? 31 : 17) or $category_ids[0]->term_id == ($slugEN ? 32 : 16)) { ?>
+                                                    <div class="swiper-slide" style="height: 50% ;">
+                                                        <div data-aos="zoom-in" data-aos-delay="<?= $b; ?>00">
+                                                            <?php
+                                                            $ratio = 'ratio-1x1 ratio';
+                                                            $args = array(
+                                                                'ratio' => $ratio
+                                                            );
+                                                            get_template_part('template-parts/hover-card', null, $args); ?>
+                                                        </div>
+                                                    </div>
+                                                <?php }
+//                                                if ($category_ids[0]->term_id == ($slugEN ? 32 : 16)) { ?>
+<!--                                                    <div class="col-md-6 col-12 aos-animate aos" data-aos="zoom-in"-->
+<!--                                                         data-aos-delay="--><?php //= $b; ?><!--00">-->
+<!--                                                        --><?php //get_template_part('template-parts/hover-card'); ?>
+<!--                                                    </div>-->
+<!--                                                --><?php //}
+                                                ?>
 
-                                    <?php endwhile;
-                                }
-                                wp_reset_postdata();
-                                ?>
+                                            <?php endwhile;
+                                        }
+                                        wp_reset_postdata();
+                                        ?>
+                                        <?php if ($category_id == ($slugEN ? 31 : 17) or $category_id == ($slugEN ? 32 : 16)) { ?>
+                                    </div>
+                                </div>
+                                <?php } else { ?>
                             </div>
+                        <?php } ?>
                         </div>
                     <?php } ?>
 
